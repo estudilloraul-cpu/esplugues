@@ -12,33 +12,30 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-
 <style>
-:root {
-  --ink:    #1a1410; --ink2:#3d3228; --ink3:#6b5d4f; --ink4:#a89880;
-  --paper:  #f8f4ee; --paper2:#f0e9de; --paper3:#e5d9c8;
-  --gold:   #c4912a; --gold2:#e8b84b; --gold3:#f5d98a; --gold4:#fdf4dc;
-  --red:    #a83232; --green:#2a6b3a; --green2:#d4edda; --white:#fffef9;
-  --nav:64px; --sb:env(safe-area-inset-bottom,0px); --st:env(safe-area-inset-top,0px);
+:root{
+  --ink:#1a1410;--ink2:#3d3228;--ink3:#6b5d4f;--ink4:#a89880;
+  --paper:#f8f4ee;--paper2:#f0e9de;--paper3:#e5d9c8;
+  --gold:#c4912a;--gold2:#e8b84b;--gold3:#f5d98a;--gold4:#fdf4dc;
+  --red:#a83232;--red2:#fdecea;--green:#2a6b3a;--green2:#d4edda;--white:#fffef9;
+  --blue:#1a4a7a;--blue2:#ddeeff;
+  --nav:64px;--sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow:hidden;-webkit-tap-highlight-color:transparent}
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 input,textarea,select{font-family:inherit}
-
 #app{display:flex;flex-direction:column;height:100dvh;padding-top:var(--st)}
 
-/* HEADER */
+/* HDR */
 .hdr{background:var(--ink);color:var(--paper);padding:13px 18px 11px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid var(--ink2)}
-.hdr-brand{display:flex;flex-direction:column;gap:1px}
 .hdr-title{font-family:'DM Sans',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-.02em;line-height:1}
-.hdr-sub-label{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:400;color:var(--ink4);letter-spacing:.13em;text-transform:uppercase;margin-top:3px}
-.hdr-right{display:flex;gap:6px}
+.hdr-sub{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--ink4);letter-spacing:.13em;text-transform:uppercase;margin-top:3px}
+.hdr-count{font-size:.62rem;color:var(--ink4);font-family:'DM Mono',monospace;margin-top:2px}
 .hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--paper);border-radius:6px;padding:6px 11px;font-size:.74rem;font-weight:500;transition:background .15s}
-.hdr-btn:active{background:rgba(255,255,255,.18)}
+.hdr-btn:active{background:rgba(255,255,255,.2)}
 .hdr-btn.gold{background:var(--gold);border-color:var(--gold2);color:var(--ink)}
-.hdr-count{font-size:.65rem;color:var(--ink4);margin-top:2px;font-family:'DM Mono',monospace}
 
 /* NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav) + var(--sb));background:var(--ink);border-top:1px solid var(--ink2);display:flex;padding-bottom:var(--sb);z-index:100}
@@ -55,102 +52,113 @@ input,textarea,select{font-family:inherit}
 .list-empty .big{font-size:3rem}
 .list-empty p{font-size:.82rem;text-align:center;line-height:1.5;max-width:240px}
 
-/* ── AGENCY CARD (lista) ── */
-.agency-card{margin:12px 13px 0;border-radius:14px;background:var(--white);border:1px solid var(--paper3);overflow:hidden;cursor:pointer;box-shadow:0 2px 10px rgba(26,20,16,.05);transition:transform .13s,box-shadow .13s}
+/* CARD LISTA */
+.agency-card{margin:12px 13px 0;border-radius:14px;background:var(--white);border:1px solid var(--paper3);overflow:hidden;cursor:pointer;box-shadow:0 2px 10px rgba(26,20,16,.05);transition:transform .13s}
 .agency-card:active{transform:scale(.99)}
-.ac-top{padding:15px 16px 11px;border-bottom:1px solid var(--paper2);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ac-top{padding:14px 15px 10px;border-bottom:1px solid var(--paper2);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .ac-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);line-height:1.1}
-.ac-meta{font-size:.63rem;color:var(--ink4);margin-top:2px;font-family:'DM Mono',monospace}
+.ac-agent{font-size:.7rem;color:var(--gold);font-weight:600;margin-top:2px}
+.ac-date{font-size:.62rem;color:var(--ink4);font-family:'DM Mono',monospace;margin-top:1px}
 .excl-badge{font-size:.58rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:5px;display:inline-block}
-.excl-si{background:#fdecea;color:var(--red)}.excl-neg{background:var(--gold4);color:var(--gold)}.excl-no{background:var(--green2);color:var(--green)}
+.excl-si{background:var(--red2);color:var(--red)}.excl-neg{background:var(--gold4);color:var(--gold)}.excl-no{background:var(--green2);color:var(--green)}
 .ac-stars{font-size:.95rem;letter-spacing:-1px;color:var(--gold2)}
 .ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--paper2)}
-.ac-cell{padding:10px 13px;border-right:1px solid var(--paper2)}.ac-cell:last-child{border-right:none}
-.ac-cell-lbl{font-size:.56rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:2px;font-family:'DM Mono',monospace}
-.ac-cell-val{font-size:.92rem;font-weight:600;color:var(--ink)}
-.ac-cell-val.hl{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+.ac-cell{padding:9px 13px;border-right:1px solid var(--paper2)}.ac-cell:last-child{border-right:none}
+.ac-cell-lbl{font-size:.55rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:2px;font-family:'DM Mono',monospace}
+.ac-cell-val{font-size:.88rem;font-weight:600;color:var(--ink)}
+.ac-cell-val.hl{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1rem}
 .ac-cell-val.gr{color:var(--green)}.ac-cell-val.rd{color:var(--red)}
-.ac-bottom{padding:9px 14px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ac-bottom{padding:9px 14px 11px;display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
 .ac-mkt{display:flex;flex-wrap:wrap;gap:3px}
-.mkt-tag{font-size:.6rem;font-weight:500;background:var(--paper2);color:var(--ink3);padding:2px 6px;border-radius:4px}
-.ac-net{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--ink3)}
+.mkt-tag{font-size:.59rem;font-weight:500;background:var(--paper2);color:var(--ink3);padding:2px 6px;border-radius:4px}
+.ac-net{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--ink3)}
 .ac-net b{color:var(--green);font-weight:600}
-.ac-export-btn{font-size:.68rem;font-weight:500;color:var(--ink4);background:var(--paper2);border:1px solid var(--paper3);border-radius:5px;padding:4px 9px;cursor:pointer;transition:background .13s}
+.ac-export-btn{font-size:.66rem;font-weight:500;color:var(--ink4);background:var(--paper2);border:1px solid var(--paper3);border-radius:5px;padding:4px 8px;cursor:pointer}
 .ac-export-btn:active{background:var(--paper3)}
 
-/* ── COMPARE ── */
+/* COMPARE */
 .compare-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50dvh;gap:10px;color:var(--ink4);font-size:.82rem;text-align:center;padding:20px}
 .compare-scroll{overflow-x:auto;padding:12px 13px 0;-webkit-overflow-scrolling:touch}
 .compare-table{border-collapse:collapse;min-width:100%;white-space:nowrap}
-.ct-head th{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ink4);padding:10px 13px;text-align:left;border-bottom:1.5px solid var(--paper3);background:var(--paper);position:sticky;top:0}
+.ct-head th{font-family:'DM Mono',monospace;font-size:.57rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ink4);padding:10px 12px;text-align:left;border-bottom:1.5px solid var(--paper3);background:var(--paper);position:sticky;top:0}
 .ct-head th:first-child{position:sticky;left:0;z-index:2;background:var(--paper)}
-.compare-table td{padding:11px 13px;border-bottom:1px solid var(--paper2);font-size:.8rem;color:var(--ink);vertical-align:top}
-.compare-table td:first-child{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;position:sticky;left:0;background:var(--white);z-index:1;border-right:1.5px solid var(--paper3);min-width:120px}
-.compare-table tr:nth-child(even) td:first-child{background:var(--paper)}
+.compare-table td{padding:10px 12px;border-bottom:1px solid var(--paper2);font-size:.78rem;color:var(--ink);vertical-align:top}
+.compare-table td:first-child{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;position:sticky;left:0;background:var(--white);z-index:1;border-right:1.5px solid var(--paper3);min-width:110px}
 .compare-table tr:nth-child(even) td{background:var(--paper)}
+.compare-table tr:nth-child(even) td:first-child{background:var(--paper)}
 .best{color:var(--green);font-weight:700}.worst{color:var(--red)}
-.compare-legend{margin:10px 13px;font-size:.68rem;color:var(--ink4);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.compare-legend{margin:10px 13px;font-size:.66rem;color:var(--ink4);display:flex;gap:14px;flex-wrap:wrap}
 
-/* ── DETAIL (ficha editable) ── */
-.detail-hero{background:var(--ink);color:var(--paper);padding:18px 18px 14px}
-.detail-name-wrap{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.detail-name-inp{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;background:transparent;border:none;color:var(--paper);outline:none;width:100%;line-height:1.05;border-bottom:1px dashed rgba(255,255,255,.2);padding-bottom:3px}
-.detail-name-inp::placeholder{color:rgba(255,255,255,.3)}
-.detail-meta-inp{font-family:'DM Mono',monospace;font-size:.62rem;background:transparent;border:none;color:var(--ink4);outline:none;width:100%;margin-top:3px}
-.detail-meta-inp::placeholder{color:rgba(168,152,128,.5)}
-.detail-stars-row{margin-top:8px;display:flex;gap:3px}
-.dstar{font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,.2);transition:color .12s;line-height:1}
+/* DETAIL */
+.detail-hero{background:var(--ink);color:var(--paper);padding:17px 17px 13px}
+.d-inp-name{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:600;background:transparent;border:none;color:var(--paper);outline:none;width:100%;line-height:1.05;border-bottom:1px dashed rgba(255,255,255,.18);padding-bottom:3px}
+.d-inp-name::placeholder{color:rgba(255,255,255,.25)}
+.d-inp-meta{font-family:'DM Sans',sans-serif;font-size:.8rem;background:transparent;border:none;color:rgba(232,184,75,.9);outline:none;width:100%;margin-top:4px;font-weight:500}
+.d-inp-meta::placeholder{color:rgba(168,152,128,.4)}
+.d-inp-date{font-family:'DM Mono',monospace;font-size:.62rem;background:transparent;border:none;color:var(--ink4);outline:none;margin-top:3px;width:160px}
+.d-stars-row{margin-top:8px;display:flex;gap:4px}
+.dstar{font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,.15);transition:color .1s;line-height:1}
 .dstar.on{color:var(--gold2)}
 
+/* DETAIL GRID */
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--paper3);border-top:1px solid var(--paper3)}
-.dc{background:var(--white);padding:13px 15px}.dc.wide{grid-column:1/-1}
-.dc-lbl{font-family:'DM Mono',monospace;font-size:.56rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--ink4);margin-bottom:5px}
-.dc-inp{width:100%;border:none;background:transparent;font-size:.88rem;font-weight:600;color:var(--ink);outline:none;border-bottom:1px dashed var(--paper3);padding-bottom:2px;transition:border-color .15s}
+.dc{background:var(--white);padding:12px 14px}.dc.wide{grid-column:1/-1}.dc.full{grid-column:1/-1}
+.dc-lbl{font-family:'DM Mono',monospace;font-size:.55rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--ink4);margin-bottom:5px}
+.dc-inp{width:100%;border:none;background:transparent;font-size:.86rem;font-weight:600;color:var(--ink);outline:none;border-bottom:1px dashed var(--paper3);padding-bottom:2px;transition:border-color .15s}
 .dc-inp:focus{border-color:var(--gold)}
-.dc-inp.big{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold)}
-.dc-inp.gr{color:var(--green)}
-textarea.dc-inp{resize:none;min-height:64px;font-weight:400;font-size:.84rem;line-height:1.5;border-bottom:none;border:1px dashed var(--paper3);border-radius:6px;padding:6px 8px;margin-top:2px}
+.dc-inp.big{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--gold)}
+.dc-inp.light{font-weight:400;font-size:.83rem}
+textarea.dc-inp{resize:none;font-weight:400;font-size:.82rem;line-height:1.55;border-bottom:none;border:1px dashed var(--paper3);border-radius:6px;padding:6px 8px;margin-top:2px;min-height:70px}
 textarea.dc-inp:focus{border-color:var(--gold)}
+.neto-display{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--green);margin-top:2px}
 
-/* Toggle inline */
+/* TOGGLES inline */
 .dc-toggle{display:flex;gap:5px;margin-top:4px}
-.dc-tog{flex:1;padding:7px 4px;border-radius:6px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.74rem;font-weight:500;text-align:center;cursor:pointer;transition:all .13s;font-family:'DM Sans',sans-serif}
+.dc-tog{flex:1;padding:7px 4px;border-radius:6px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.72rem;font-weight:500;text-align:center;cursor:pointer;transition:all .12s}
 .dc-tog.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 
-/* Marketing chips inline */
+/* MKT chips inline */
 .dc-mkt{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
-.dc-mchip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.72rem;font-weight:500;cursor:pointer;transition:all .13s}
+.dc-mchip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.71rem;font-weight:500;cursor:pointer;transition:all .12s}
 .dc-mchip.sel{background:var(--gold4);border-color:var(--gold);color:var(--ink)}
 
-/* Neto computed */
-.neto-display{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--green);margin-top:2px}
+/* Section headers inside detail */
+.dc-section{grid-column:1/-1;background:var(--paper);padding:9px 14px 7px;border-top:1px solid var(--paper3)}
+.dc-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4)}
 
-/* Detail actions */
-.detail-actions{display:flex;gap:7px;padding:13px 13px 0;flex-wrap:wrap}
-.detail-actions button{flex:1;min-width:80px}
-.save-indicator{font-size:.68rem;color:var(--green);font-family:'DM Mono',monospace;text-align:center;padding:6px 0;opacity:0;transition:opacity .3s}
+/* Opinion piso chips */
+.opinion-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.op-chip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.71rem;font-weight:500;cursor:pointer;transition:all .12s}
+.op-chip.sel{background:var(--blue2);border-color:#90b8e0;color:var(--blue)}
+
+/* Save indicator */
+.save-indicator{font-size:.67rem;color:var(--green);font-family:'DM Mono',monospace;text-align:center;padding:5px 0;opacity:0;transition:opacity .3s}
 .save-indicator.show{opacity:1}
 
-/* FORM (nueva ficha) */
+/* DETAIL ACTIONS */
+.detail-actions{display:flex;gap:6px;padding:12px 13px 0;flex-wrap:wrap}
+.detail-actions button{flex:1;min-width:70px}
+
+/* FORM */
 .form-wrap{padding:13px 13px 0}
-.form-section{margin-bottom:16px}
-.form-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--paper3)}
-.field{margin-bottom:11px}
+.form-section{margin-bottom:15px}
+.form-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--paper3)}
+.field{margin-bottom:10px}
 .lbl{font-size:.7rem;font-weight:600;color:var(--ink2);letter-spacing:.02em;margin-bottom:4px;display:block}
-.inp{width:100%;border:1.5px solid var(--paper3);border-radius:7px;padding:10px 11px;font-size:.86rem;color:var(--ink);background:var(--white);outline:none;transition:border .15s;-webkit-appearance:none}
+.inp{width:100%;border:1.5px solid var(--paper3);border-radius:7px;padding:10px 11px;font-size:.85rem;color:var(--ink);background:var(--white);outline:none;transition:border .15s;-webkit-appearance:none}
 .inp:focus{border-color:var(--gold)}
-textarea.inp{resize:none;min-height:68px}
+textarea.inp{resize:none;min-height:66px}
 .inp-row{display:flex;gap:7px}.inp-row .field{flex:1}
 .stars-input{display:flex;gap:4px;margin-top:2px}
 .star-btn{font-size:1.5rem;color:var(--paper3);cursor:pointer;transition:color .1s;line-height:1}
 .star-btn.on{color:var(--gold2)}
 .toggle-row{display:flex;gap:5px}
-.tog{flex:1;padding:8px 6px;border-radius:7px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.78rem;font-weight:500;text-align:center;cursor:pointer;transition:all .13s}
+.tog{flex:1;padding:8px 5px;border-radius:7px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.77rem;font-weight:500;text-align:center;cursor:pointer;transition:all .12s}
 .tog.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .mkt-checks{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
-.mkt-check{padding:6px 10px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.74rem;font-weight:500;cursor:pointer;transition:all .13s}
+.mkt-check{padding:6px 10px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.73rem;font-weight:500;cursor:pointer;transition:all .12s}
 .mkt-check.sel{background:var(--gold4);border-color:var(--gold);color:var(--ink)}
-.calc-preview{background:var(--ink);color:var(--paper);border-radius:9px;padding:13px 14px;margin-top:7px;display:none}
+.calc-preview{background:var(--ink);color:var(--paper);border-radius:9px;padding:12px 14px;margin-top:7px;display:none}
 .calc-preview.show{display:block}
 .calc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
 .calc-row:last-child{margin-bottom:0;padding-top:6px;border-top:1px solid rgba(255,255,255,.1)}
@@ -158,16 +166,16 @@ textarea.inp{resize:none;min-height:68px}
 .calc-val{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600}
 .calc-val.green{color:#6be08a}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:12px 16px;border-radius:7px;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .15s;border:none;font-family:inherit}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:12px 15px;border-radius:7px;font-size:.83rem;font-weight:600;cursor:pointer;transition:all .15s;border:none;font-family:inherit}
 .btn-ink{background:var(--ink);color:var(--paper);width:100%;margin-top:5px}
 .btn-ink:active{background:var(--ink2);transform:scale(.99)}
 .btn-outline{border:1.5px solid var(--paper3);color:var(--ink2);background:transparent}
 .btn-outline:active{background:var(--paper2)}
-.btn-danger{background:#fdecea;color:var(--red);border:1.5px solid #f0c0c0}
+.btn-danger{background:var(--red2);color:var(--red);border:1.5px solid #f0c0c0}
 .btn-save{background:var(--green);color:var(--white)}
 .btn-save:active{background:#1e5029}
 .btn-export{background:var(--gold4);color:var(--gold);border:1.5px solid var(--gold3)}
-.btn-export:active{background:var(--gold3)}
 
 /* MODAL */
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:200;display:none;align-items:flex-end}
@@ -186,56 +194,29 @@ textarea.inp{resize:none;min-height:68px}
 </head>
 <body>
 <div id="app">
-
 <header class="hdr">
-  <div class="hdr-brand">
+  <div>
     <div class="hdr-title">Piso Esplugues</div>
-    <div class="hdr-sub-label">Comparador</div>
+    <div class="hdr-sub">Comparador inmobiliarias</div>
   </div>
   <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-    <div class="hdr-right">
-      <button class="hdr-btn gold" onclick="showPage('form');resetForm()">+ Añadir</button>
-    </div>
+    <button class="hdr-btn gold" onclick="showPage('form');resetForm()">+ Añadir</button>
     <div class="hdr-count" id="hdr-count"></div>
   </div>
 </header>
 
 <div class="pages">
-
-  <!-- LISTA -->
-  <div class="page on" id="page-lista">
-    <div id="lista-content"></div>
-  </div>
-
-  <!-- COMPARAR -->
-  <div class="page" id="page-comparar">
-    <div id="compare-content"></div>
-  </div>
-
-  <!-- FORM (nueva ficha) -->
-  <div class="page" id="page-form">
-    <div class="form-wrap" id="form-inner">
-      <!-- rellenado por resetForm() -->
-    </div>
-  </div>
-
-  <!-- DETAIL (ficha editable) -->
-  <div class="page" id="page-detail">
-    <div id="detail-inner"></div>
-  </div>
-
+  <div class="page on" id="page-lista"><div id="lista-content"></div></div>
+  <div class="page" id="page-comparar"><div id="compare-content"></div></div>
+  <div class="page" id="page-form"><div class="form-wrap" id="form-inner"></div></div>
+  <div class="page" id="page-detail"><div id="detail-inner"></div></div>
 </div>
 
 <nav class="bnav">
-  <button class="nb on" id="nb-lista" onclick="showPage('lista')">
-    <span class="ni">🏢</span>Fichas
-  </button>
-  <button class="nb" id="nb-comparar" onclick="showPage('comparar')">
-    <span class="ni">⚖️</span>Comparar
-  </button>
+  <button class="nb on" id="nb-lista" onclick="showPage('lista')"><span class="ni">🏢</span>Fichas</button>
+  <button class="nb" id="nb-comparar" onclick="showPage('comparar')"><span class="ni">⚖️</span>Comparar</button>
 </nav>
 </div>
-
 <div id="toast"></div>
 
 <div class="backdrop" id="m-del">
@@ -251,193 +232,285 @@ textarea.inp{resize:none;min-height:68px}
 </div>
 
 <script>
-/* ══ DATA ══ */
+/* ══ CONSTANTS ══ */
 const MKT_OPTIONS = [
-  {k:'Fotos profesionales',e:'📷'},{k:'Vídeo/tour virtual',e:'🎥'},
-  {k:'Idealista',e:'🏠'},{k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},
-  {k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},{k:'Plano del piso',e:'📐'},
+  {k:'Fotos profesionales',e:'📷'},{k:'Fotógrafo profesional',e:'📸'},
+  {k:'Vídeo/tour virtual',e:'🎥'},{k:'Idealista',e:'🏠'},
+  {k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},
+  {k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},
+  {k:'Plano del piso',e:'📐'},{k:'Todas las plataformas',e:'🌐'},
+];
+const OPINION_OPTIONS = [
+  'Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado',
+  'Estancias amplias','Posibilidad baño extra','Cocina amplia','Terraza/balcón',
+  'Buen estado general','Potencial de mejora','Zona tranquila','Buenas comunicaciones',
 ];
 
+/* ══ DATA ══ */
 let DB = {agencies:[]};
 let deleteId = null;
-let formStars = 0, formExcl = 'no';
-let formMkt = ['Fotos profesionales','Idealista','Fotocasa'];
-let editId = null;
+let detailId = null, detailMkt=[], detailExcl='no', detailStars=0, detailOpinion=[];
+let formStars=0, formExcl='no', formMkt=['Fotos profesionales','Idealista','Fotocasa'];
 
-/* Datos de demo: Fincas Juma */
-const DEMO = [{
-  id:'juma',
-  name:'Fincas Juma',
-  date: new Date().toISOString().split('T')[0],
-  agent:'',
-  price:null,
-  commission:null,
-  exclusivity:'si',
-  time:'',
-  similar:null,
-  marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],
-  stars:0,
-  notes:'Piden exclusividad. Campaña en plataformas tipo Idealista y similares.'
-}];
+/* Demo data: Don Piso */
+const DEMO_AGENCIES = [
+  {
+    id:'donpiso',
+    name:'Don Piso',
+    agent:'José Ángel',
+    date:new Date().toISOString().split('T')[0],
+    stars:5,
+    price:307500,
+    priceMin:300000,
+    priceMax:315000,
+    commission:3,
+    commissionNote:'3% + IVA, negociable. Dispuesto a ajustarse si hace falta.',
+    exclusivity:'no',
+    exclusivityNote:'No pide exclusividad. Prefiere sin ella porque genera tensiones. Sí pide documento de autorización de visitas y entrega de llaves (por protección y control).',
+    time:'A determinar',
+    similar:null,
+    marketing:['Fotógrafo profesional','Todas las plataformas','Idealista','Fotocasa'],
+    certEnergetico:'170€ con su técnico (solo si no vende él el piso)',
+    cedula:'Incluida en los 170€',
+    parking:'No incluir de entrada. Solo mencionar si el comprador pregunta.',
+    comunidad:'Pendiente: pedir cuota al administrador. Pedir ITE de la finca (debe existir por reforma fachada). Confirmar derramas.',
+    opinion:['Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado','Estancias amplias','Potencial de mejora'],
+    opinionNotes:'Ha hecho medición completa con láser. Venta cercana de referencia: salida 310k, cierre 285k. Menciona posibilidad de añadir aseo/baño extra.',
+    visitas:'Avisa con antelación. Se desactiva alarma antes de la visita y se reactiva después.',
+    nextStep:'Quedar un día para entregarle la llave. Antes, enviarle por mail el documento/autorización.',
+    sensacion:'Muy buena opción. Honesto, con experiencia, transmite confianza. Lleva muchos años vendiendo pisos. Potente estructura y buen alcance. Muy buena sensación, junto con Xavi es la mejor opción.',
+    notes:'',
+  },
+  {
+    id:'juma',
+    name:'Fincas Juma',
+    agent:'',
+    date:new Date().toISOString().split('T')[0],
+    stars:0,
+    price:null,priceMin:null,priceMax:null,
+    commission:null,commissionNote:'',
+    exclusivity:'si',
+    exclusivityNote:'Piden exclusividad.',
+    time:'',similar:null,
+    marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],
+    certEnergetico:'',cedula:'',parking:'',comunidad:'',
+    opinion:[],opinionNotes:'',visitas:'',nextStep:'',
+    sensacion:'Campaña en plataformas tipo Idealista y similares.',
+    notes:'',
+  }
+];
 
 function load(){
   try{
-    const r=localStorage.getItem('inmo25b');
-    if(r){ DB={...DB,...JSON.parse(r)}; return; }
+    const r=localStorage.getItem('inmo26');
+    if(r){DB={...DB,...JSON.parse(r)};return;}
   }catch(e){}
-  // Primera vez: cargar demo
-  DB.agencies = DEMO;
+  DB.agencies=[...DEMO_AGENCIES];
   save();
 }
-function save(){ localStorage.setItem('inmo25b', JSON.stringify(DB)) }
+function save(){localStorage.setItem('inmo26',JSON.stringify(DB))}
 
 /* ══ FORMAT ══ */
-const fmtEur = n => n ? new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n) : '–';
-const fmtDate = iso => iso ? new Date(iso+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'}) : '';
-const starsStr = n => '★'.repeat(n||0)+'☆'.repeat(5-(n||0));
+const fmtEur=n=>n?new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n):'–';
+const fmtDate=iso=>iso?new Date(iso+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'}):'';
+const starsStr=n=>'★'.repeat(n||0)+'☆'.repeat(5-(n||0));
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-/* ══ RENDER LISTA ══ */
+/* ══ LISTA ══ */
 function renderLista(){
-  const el = document.getElementById('lista-content');
-  const n = DB.agencies.length;
-  document.getElementById('hdr-count').textContent = n===0?'Sin fichas':n===1?'1 inmobiliaria':`${n} inmobiliarias`;
-  if(!n){
-    el.innerHTML=`<div class="list-empty"><div class="big">🏢</div><p>Añade la primera inmobiliaria con <b>+ Añadir</b></p></div>`;
-    return;
-  }
-  el.innerHTML = DB.agencies.map(a=>{
-    const net = a.price&&a.commission ? a.price - a.price*a.commission/100 : null;
-    const exclCls = a.exclusivity==='si'?'excl-si':a.exclusivity==='negociable'?'excl-neg':'excl-no';
-    const exclTxt = a.exclusivity==='si'?'⚠ Exclusiva':a.exclusivity==='negociable'?'↕ Negociable':'✓ Sin exclusiva';
+  const el=document.getElementById('lista-content');
+  const n=DB.agencies.length;
+  document.getElementById('hdr-count').textContent=n===0?'Sin fichas':n===1?'1 inmobiliaria':`${n} inmobiliarias`;
+  if(!n){el.innerHTML=`<div class="list-empty"><div class="big">🏢</div><p>Añade la primera inmobiliaria con <b>+ Añadir</b></p></div>`;return;}
+  el.innerHTML=DB.agencies.map(a=>{
+    const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
+    const exclCls=a.exclusivity==='si'?'excl-si':a.exclusivity==='negociable'?'excl-neg':'excl-no';
+    const exclTxt=a.exclusivity==='si'?'⚠ Exclusiva':a.exclusivity==='negociable'?'↕ Negociable':'✓ Sin exclusiva';
+    const rangoTxt=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)}–${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
     return `<div class="agency-card" onclick="openDetail('${a.id}')">
       <div class="ac-top">
         <div>
-          <div class="ac-name">${a.name}</div>
-          ${a.agent?`<div class="ac-meta">${a.agent}</div>`:''}
-          <div class="ac-meta">${fmtDate(a.date)}</div>
+          <div class="ac-name">${esc(a.name)}</div>
+          ${a.agent?`<div class="ac-agent">${esc(a.agent)}</div>`:''}
+          <div class="ac-date">${fmtDate(a.date)}</div>
           <span class="excl-badge ${exclCls}">${exclTxt}</span>
         </div>
-        <div style="text-align:right">
-          <div class="ac-stars">${starsStr(a.stars)}</div>
-        </div>
+        <div style="text-align:right"><div class="ac-stars">${starsStr(a.stars)}</div></div>
       </div>
       <div class="ac-grid">
-        <div class="ac-cell"><div class="ac-cell-lbl">Valoración</div><div class="ac-cell-val hl">${a.price?fmtEur(a.price):'–'}</div></div>
-        <div class="ac-cell"><div class="ac-cell-lbl">Comisión</div><div class="ac-cell-val ${a.commission>4?'rd':'gr'}">${a.commission?a.commission+'%':'–'}</div></div>
-        <div class="ac-cell"><div class="ac-cell-lbl">Plazo</div><div class="ac-cell-val" style="font-size:.78rem">${a.time||'–'}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Precio salida</div><div class="ac-cell-val hl" style="font-size:.82rem">${rangoTxt}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Comisión</div><div class="ac-cell-val ${(a.commission||0)>4?'rd':'gr'}">${a.commission?a.commission+'%':'–'}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Neto estimado</div><div class="ac-cell-val gr" style="font-size:.78rem">${net?fmtEur(net):'–'}</div></div>
       </div>
       <div class="ac-bottom">
         <div class="ac-mkt">${(a.marketing||[]).slice(0,3).map(m=>`<span class="mkt-tag">${m}</span>`).join('')}${(a.marketing||[]).length>3?`<span class="mkt-tag">+${a.marketing.length-3}</span>`:''}</div>
-        <div style="display:flex;align-items:center;gap:7px">
-          ${net?`<div class="ac-net">Neto: <b>${fmtEur(net)}</b></div>`:''}
-          <button class="ac-export-btn" onclick="event.stopPropagation();exportTxt('${a.id}')">⬇ TXT</button>
-        </div>
+        <button class="ac-export-btn" onclick="event.stopPropagation();exportTxt('${a.id}')">⬇ TXT</button>
       </div>
     </div>`;
   }).join('');
 }
 
-/* ══ RENDER COMPARE ══ */
+/* ══ COMPARE ══ */
 function renderCompare(){
-  const el = document.getElementById('compare-content');
-  if(!DB.agencies.length){el.innerHTML=`<div class="compare-empty"><div style="font-size:2.5rem">⚖️</div><p>Añade al menos una inmobiliaria para comparar</p></div>`;return}
+  const el=document.getElementById('compare-content');
+  if(!DB.agencies.length){el.innerHTML=`<div class="compare-empty"><div style="font-size:2.5rem">⚖️</div><p>Añade inmobiliarias para comparar</p></div>`;return;}
   const prices=DB.agencies.map(a=>a.price).filter(Boolean);
   const comms=DB.agencies.map(a=>a.commission).filter(Boolean);
   const nets=DB.agencies.map(a=>a.price&&a.commission?a.price-a.price*a.commission/100:null).filter(Boolean);
   const maxPrice=prices.length?Math.max(...prices):null;
   const minComm=comms.length?Math.min(...comms):null;
   const maxNet=nets.length?Math.max(...nets):null;
-  const maxStars=DB.agencies.length?Math.max(...DB.agencies.map(a=>a.stars||0)):null;
+  const maxStars=DB.agencies.length?Math.max(...DB.agencies.map(a=>a.stars||0)):0;
   const rows=DB.agencies.map(a=>{
     const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
+    const rango=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)}–${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
     return `<tr>
-      <td>${a.name}</td>
-      <td class="${a.price===maxPrice?'best':''}">${a.price?fmtEur(a.price):'–'}</td>
+      <td>${esc(a.name)}${a.agent?`<br><span style="font-size:.65rem;color:var(--gold)">${esc(a.agent)}</span>`:''}
+      </td>
+      <td class="${a.price===maxPrice?'best':''}">${rango}</td>
       <td class="${a.commission===minComm?'best':a.commission>(minComm||0)*1.5?'worst':''}">${a.commission?a.commission+'%':'–'}</td>
       <td class="${net===maxNet?'best':''}">${net?fmtEur(net):'–'}</td>
-      <td>${a.time||'–'}</td>
       <td>${a.exclusivity==='si'?'⚠ Sí':a.exclusivity==='negociable'?'↕ Neg.':'✓ No'}</td>
-      <td class="${(a.stars||0)===maxStars&&maxStars>0?'best':''}">${'★'.repeat(a.stars||0)}</td>
+      <td>${a.certEnergetico||'–'}</td>
+      <td class="${(a.stars||0)===maxStars&&maxStars>0?'best':''}">${'★'.repeat(a.stars||0)||'–'}</td>
     </tr>`;
   }).join('');
   el.innerHTML=`<div class="compare-scroll"><table class="compare-table">
-    <thead class="ct-head"><tr><th>Inmobiliaria</th><th>Valoración</th><th>Comisión</th><th>Neto para ti</th><th>Plazo</th><th>Exclusiva</th><th>Confianza</th></tr></thead>
+    <thead class="ct-head"><tr><th>Inmobiliaria</th><th>Precio salida</th><th>Comisión</th><th>Neto</th><th>Exclusiva</th><th>Cert. energético</th><th>Confianza</th></tr></thead>
     <tbody>${rows}</tbody>
   </table></div>
-  <div class="compare-legend"><span><b style="color:var(--green)">Verde</b> = mejor dato</span><span><span style="color:var(--red)">Rojo</span> = desfavorable</span></div>`;
+  <div class="compare-legend"><span><b style="color:var(--green)">Verde</b> = mejor</span><span><span style="color:var(--red)">Rojo</span> = desfavorable</span></div>`;
 }
 
-/* ══ DETAIL (editable inline) ══ */
-let detailId = null;
-let detailMkt = [];
-let detailExcl = 'no';
-let detailStars = 0;
-
+/* ══ DETAIL ══ */
 function openDetail(id){
-  const a = DB.agencies.find(x=>x.id===id);
-  if(!a) return;
-  detailId = id;
-  detailMkt = [...(a.marketing||[])];
-  detailExcl = a.exclusivity||'no';
-  detailStars = a.stars||0;
+  const a=DB.agencies.find(x=>x.id===id);
+  if(!a)return;
+  detailId=id; detailMkt=[...(a.marketing||[])]; detailExcl=a.exclusivity||'no';
+  detailStars=a.stars||0; detailOpinion=[...(a.opinion||[])];
 
-  const mktChips = MKT_OPTIONS.map(o=>`
-    <div class="dc-mchip${detailMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="toggleDetailMkt(this)">${o.e} ${o.k}</div>
-  `).join('');
+  const mktChips=MKT_OPTIONS.map(o=>`<div class="dc-mchip${detailMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togDetailMkt(this)">${o.e} ${o.k}</div>`).join('');
+  const opChips=OPINION_OPTIONS.map(o=>`<div class="op-chip${detailOpinion.includes(o)?' sel':''}" data-op="${o}" onclick="togDetailOp(this)">${o}</div>`).join('');
+  const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
 
-  document.getElementById('detail-inner').innerHTML = `
+  document.getElementById('detail-inner').innerHTML=`
     <div class="detail-hero">
-      <div class="detail-name-wrap">
-        <input class="detail-name-inp" id="d-name" value="${esc(a.name)}" placeholder="Nombre de la inmobiliaria"/>
-      </div>
-      <input class="detail-meta-inp" id="d-agent" value="${esc(a.agent||'')}" placeholder="Nombre del agente (opcional)"/>
-      <input class="detail-meta-inp" id="d-date" type="date" value="${a.date||''}"/>
-      <div class="detail-stars-row" id="d-stars-row">
-        ${[1,2,3,4,5].map(n=>`<span class="dstar${detailStars>=n?' on':''}" onclick="setDetailStar(${n})">★</span>`).join('')}
+      <input class="d-inp-name" id="d-name" value="${esc(a.name)}" placeholder="Nombre inmobiliaria"/>
+      <input class="d-inp-meta" id="d-agent" value="${esc(a.agent||'')}" placeholder="Nombre del agente"/>
+      <input class="d-inp-date" id="d-date" type="date" value="${a.date||''}"/>
+      <div class="d-stars-row" id="d-stars">
+        ${[1,2,3,4,5].map(n=>`<span class="dstar${detailStars>=n?' on':''}" onclick="setDS(${n})">★</span>`).join('')}
       </div>
     </div>
 
     <div class="detail-grid">
+
+      <div class="dc-section"><div class="dc-section-title">💰 Económico</div></div>
+
       <div class="dc">
-        <div class="dc-lbl">Valoración del piso (€)</div>
-        <input class="dc-inp big" id="d-price" type="number" value="${a.price||''}" placeholder="–" oninput="updateDetailNeto()"/>
+        <div class="dc-lbl">Precio orientativo de salida (€)</div>
+        <input class="dc-inp big" id="d-price" type="number" value="${a.price||''}" placeholder="–" oninput="updNeto()"/>
       </div>
       <div class="dc">
         <div class="dc-lbl">Comisión (%)</div>
-        <input class="dc-inp" id="d-commission" type="number" value="${a.commission||''}" placeholder="–" step="0.1" oninput="updateDetailNeto()"/>
+        <input class="dc-inp big" id="d-comm" type="number" value="${a.commission||''}" placeholder="–" step="0.1" oninput="updNeto()"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Precio mín. estimado (€)</div>
+        <input class="dc-inp" id="d-priceMin" type="number" value="${a.priceMin||''}" placeholder="–"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Precio máx. estimado (€)</div>
+        <input class="dc-inp" id="d-priceMax" type="number" value="${a.priceMax||''}" placeholder="–"/>
       </div>
       <div class="dc wide">
-        <div class="dc-lbl">Lo que recibes tú (neto)</div>
-        <div class="neto-display" id="d-neto">${(()=>{const n=a.price&&a.commission?a.price-a.price*a.commission/100:null;return n?fmtEur(n):'–'})()}</div>
+        <div class="dc-lbl">Neto estimado para ti</div>
+        <div class="neto-display" id="d-neto">${net?fmtEur(net):'–'}</div>
       </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Nota sobre comisión</div>
+        <textarea class="dc-inp light" id="d-commNote" rows="2">${esc(a.commissionNote||'')}</textarea>
+      </div>
+
+      <div class="dc-section"><div class="dc-section-title">📋 Condiciones</div></div>
+
       <div class="dc wide">
         <div class="dc-lbl">¿Exigen exclusividad?</div>
         <div class="dc-toggle">
-          <div class="dc-tog${detailExcl==='no'?' sel':''}" data-excl="no" onclick="setDetailExcl(this)">No</div>
-          <div class="dc-tog${detailExcl==='si'?' sel':''}" data-excl="si" onclick="setDetailExcl(this)">Sí</div>
-          <div class="dc-tog${detailExcl==='negociable'?' sel':''}" data-excl="negociable" onclick="setDetailExcl(this)">Negociable</div>
+          <div class="dc-tog${detailExcl==='no'?' sel':''}" data-excl="no" onclick="setDE(this)">No</div>
+          <div class="dc-tog${detailExcl==='si'?' sel':''}" data-excl="si" onclick="setDE(this)">Sí</div>
+          <div class="dc-tog${detailExcl==='negociable'?' sel':''}" data-excl="negociable" onclick="setDE(this)">Negociable</div>
         </div>
       </div>
+      <div class="dc full">
+        <div class="dc-lbl">Detalles sobre exclusividad / contrato</div>
+        <textarea class="dc-inp light" id="d-exclNote" rows="3">${esc(a.exclusivityNote||'')}</textarea>
+      </div>
       <div class="dc">
-        <div class="dc-lbl">Plazo estimado</div>
-        <input class="dc-inp" id="d-time" value="${esc(a.time||'')}" placeholder="Ej: 2–3 meses"/>
+        <div class="dc-lbl">Plazo estimado de venta</div>
+        <input class="dc-inp light" id="d-time" value="${esc(a.time||'')}" placeholder="Ej: 2–3 meses"/>
       </div>
       <div class="dc">
         <div class="dc-lbl">Pisos similares en cartera</div>
-        <input class="dc-inp" id="d-similar" type="number" value="${a.similar||''}" placeholder="–"/>
+        <input class="dc-inp light" id="d-similar" type="number" value="${a.similar||''}" placeholder="–"/>
       </div>
-      <div class="dc wide">
+      <div class="dc">
+        <div class="dc-lbl">Certificado energético</div>
+        <input class="dc-inp light" id="d-cert" value="${esc(a.certEnergetico||'')}" placeholder="Ej: 170€ con su técnico"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Cédula de habitabilidad</div>
+        <input class="dc-inp light" id="d-cedula" value="${esc(a.cedula||'')}" placeholder="–"/>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Parking</div>
+        <textarea class="dc-inp light" id="d-parking" rows="2">${esc(a.parking||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Comunidad y documentación pendiente</div>
+        <textarea class="dc-inp light" id="d-comunidad" rows="3">${esc(a.comunidad||'')}</textarea>
+      </div>
+
+      <div class="dc-section"><div class="dc-section-title">📢 Marketing y visitas</div></div>
+
+      <div class="dc full">
         <div class="dc-lbl">Plan de marketing</div>
         <div class="dc-mkt" id="d-mkt">${mktChips}</div>
       </div>
-      <div class="dc wide">
-        <div class="dc-lbl">Notas, referencias y observaciones</div>
-        <textarea class="dc-inp" id="d-notes" rows="4" placeholder="Impresión, referencias de clientes, condiciones especiales…">${esc(a.notes||'')}</textarea>
+      <div class="dc full">
+        <div class="dc-lbl">Funcionamiento de las visitas</div>
+        <textarea class="dc-inp light" id="d-visitas" rows="2">${esc(a.visitas||'')}</textarea>
       </div>
+
+      <div class="dc-section"><div class="dc-section-title">🏠 Opinión del piso</div></div>
+
+      <div class="dc full">
+        <div class="dc-lbl">¿Qué destacan?</div>
+        <div class="opinion-chips" id="d-opinion">${opChips}</div>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Observaciones adicionales sobre el piso</div>
+        <textarea class="dc-inp light" id="d-opinionNotes" rows="3">${esc(a.opinionNotes||'')}</textarea>
+      </div>
+
+      <div class="dc-section"><div class="dc-section-title">📌 Siguiente paso y valoración final</div></div>
+
+      <div class="dc full">
+        <div class="dc-lbl">Próximo paso acordado</div>
+        <textarea class="dc-inp light" id="d-nextStep" rows="2">${esc(a.nextStep||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Sensación general / valoración final</div>
+        <textarea class="dc-inp light" id="d-sensacion" rows="3">${esc(a.sensacion||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Notas libres adicionales</div>
+        <textarea class="dc-inp light" id="d-notes" rows="3">${esc(a.notes||'')}</textarea>
+      </div>
+
     </div>
 
-    <div id="d-save-indicator" class="save-indicator">✓ Guardado</div>
-
+    <div id="d-save-ind" class="save-indicator">✓ Guardado</div>
     <div class="detail-actions">
       <button class="btn btn-outline" onclick="showPage('lista')">← Volver</button>
       <button class="btn btn-save" onclick="saveDetail()">💾 Guardar</button>
@@ -449,104 +522,97 @@ function openDetail(id){
   showPage('detail');
 }
 
-function esc(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;') }
-
-function setDetailStar(n){
-  detailStars = n;
-  document.querySelectorAll('#d-stars-row .dstar').forEach((s,i)=>s.classList.toggle('on',i<n));
-}
-function setDetailExcl(el){
-  document.querySelectorAll('.dc-tog[data-excl]').forEach(b=>b.classList.remove('sel'));
-  el.classList.add('sel');
-  detailExcl = el.dataset.excl;
-}
-function toggleDetailMkt(el){
-  el.classList.toggle('sel');
-  const k = el.dataset.mkt;
-  if(el.classList.contains('sel')){ if(!detailMkt.includes(k)) detailMkt.push(k); }
-  else { detailMkt = detailMkt.filter(m=>m!==k); }
-}
-function updateDetailNeto(){
-  const p = parseFloat(document.getElementById('d-price')?.value);
-  const c = parseFloat(document.getElementById('d-commission')?.value);
-  const el = document.getElementById('d-neto');
-  if(el) el.textContent = (p&&c) ? fmtEur(p - p*c/100) : '–';
-}
+function setDS(n){detailStars=n;document.querySelectorAll('#d-stars .dstar').forEach((s,i)=>s.classList.toggle('on',i<n))}
+function setDE(el){document.querySelectorAll('.dc-tog[data-excl]').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');detailExcl=el.dataset.excl}
+function togDetailMkt(el){el.classList.toggle('sel');const k=el.dataset.mkt;if(el.classList.contains('sel')){if(!detailMkt.includes(k))detailMkt.push(k)}else{detailMkt=detailMkt.filter(m=>m!==k)}}
+function togDetailOp(el){el.classList.toggle('sel');const k=el.dataset.op;if(el.classList.contains('sel')){if(!detailOpinion.includes(k))detailOpinion.push(k)}else{detailOpinion=detailOpinion.filter(o=>o!==k)}}
+function updNeto(){const p=parseFloat(document.getElementById('d-price')?.value);const c=parseFloat(document.getElementById('d-comm')?.value);const el=document.getElementById('d-neto');if(el)el.textContent=(p&&c)?fmtEur(p-p*c/100):'–'}
 
 function saveDetail(){
-  const a = DB.agencies.find(x=>x.id===detailId);
-  if(!a) return;
-  a.name = document.getElementById('d-name').value.trim() || a.name;
-  a.agent = document.getElementById('d-agent').value.trim();
-  a.date = document.getElementById('d-date').value;
-  a.price = parseFloat(document.getElementById('d-price').value)||null;
-  a.commission = parseFloat(document.getElementById('d-commission').value)||null;
-  a.exclusivity = detailExcl;
-  a.time = document.getElementById('d-time').value.trim();
-  a.similar = parseInt(document.getElementById('d-similar').value)||null;
-  a.marketing = [...detailMkt];
-  a.stars = detailStars;
-  a.notes = document.getElementById('d-notes').value.trim();
-  save();
-  renderLista(); renderCompare();
-  const ind = document.getElementById('d-save-indicator');
-  if(ind){ ind.classList.add('show'); setTimeout(()=>ind.classList.remove('show'),2000); }
+  const a=DB.agencies.find(x=>x.id===detailId);
+  if(!a)return;
+  const g=id=>document.getElementById(id)?.value.trim()||'';
+  const gn=id=>parseFloat(document.getElementById(id)?.value)||null;
+  a.name=g('d-name')||a.name; a.agent=g('d-agent'); a.date=g('d-date');
+  a.stars=detailStars; a.price=gn('d-price'); a.commission=gn('d-comm');
+  a.priceMin=gn('d-priceMin'); a.priceMax=gn('d-priceMax');
+  a.commissionNote=g('d-commNote'); a.exclusivity=detailExcl;
+  a.exclusivityNote=g('d-exclNote'); a.time=g('d-time');
+  a.similar=parseInt(document.getElementById('d-similar')?.value)||null;
+  a.certEnergetico=g('d-cert'); a.cedula=g('d-cedula');
+  a.parking=g('d-parking'); a.comunidad=g('d-comunidad');
+  a.marketing=[...detailMkt]; a.visitas=g('d-visitas');
+  a.opinion=[...detailOpinion]; a.opinionNotes=g('d-opinionNotes');
+  a.nextStep=g('d-nextStep'); a.sensacion=g('d-sensacion'); a.notes=g('d-notes');
+  save(); renderLista(); renderCompare();
+  const ind=document.getElementById('d-save-ind');
+  if(ind){ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),2200)}
   showToast(`${a.name} guardada ✓`);
 }
 
 /* ══ EXPORT TXT ══ */
 function exportTxt(id){
-  const a = DB.agencies.find(x=>x.id===id);
-  if(!a) return;
-  const net = a.price&&a.commission ? a.price - a.price*a.commission/100 : null;
-  const exclMap = {si:'Sí, exigen exclusiva',negociable:'Negociable',no:'No exigen exclusiva'};
-  const lines = [
-    '══════════════════════════════════',
-    `PISO ESPLUGUES — Ficha de inmobiliaria`,
-    '══════════════════════════════════',
+  const a=DB.agencies.find(x=>x.id===id);
+  if(!a)return;
+  const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
+  const exclMap={si:'Sí, exigen exclusiva',negociable:'Negociable',no:'No exigen exclusiva'};
+  const rango=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)} – ${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
+  const sep='─'.repeat(40);
+  const lines=[
+    '══════════════════════════════════════════',
+    '  PISO ESPLUGUES — Ficha de inmobiliaria',
+    '══════════════════════════════════════════',
     '',
-    `Inmobiliaria:     ${a.name}`,
-    `Agente:           ${a.agent||'–'}`,
-    `Fecha visita:     ${fmtDate(a.date)||'–'}`,
-    `Confianza:        ${'★'.repeat(a.stars||0)||'Sin valorar'}`,
-    '',
-    '── Económico ─────────────────────',
-    `Valoración piso:  ${a.price?fmtEur(a.price):'–'}`,
-    `Comisión:         ${a.commission?a.commission+'%':'–'}`,
-    `Neto para ti:     ${net?fmtEur(net):'–'}`,
-    '',
-    '── Condiciones ───────────────────',
-    `Exclusividad:     ${exclMap[a.exclusivity]||'–'}`,
-    `Plazo estimado:   ${a.time||'–'}`,
-    `Pisos similares:  ${a.similar?a.similar+' pisos en cartera':'–'}`,
-    '',
-    '── Marketing ─────────────────────',
-    `Incluye:          ${(a.marketing||[]).join(', ')||'–'}`,
-    '',
-    '── Notas y referencias ───────────',
-    a.notes||'–',
-    '',
-    '══════════════════════════════════',
+    `Inmobiliaria:      ${a.name}`,
+    `Agente:            ${a.agent||'–'}`,
+    `Fecha visita:      ${fmtDate(a.date)||'–'}`,
+    `Confianza:         ${'★'.repeat(a.stars||0)||'Sin valorar'}`,
+    '',sep,
+    'ECONÓMICO',sep,
+    `Precio de salida:  ${rango}`,
+    `Comisión:          ${a.commission?a.commission+'% + IVA':'–'}`,
+    `Neto estimado:     ${net?fmtEur(net):'–'}`,
+    ...(a.commissionNote?[`Nota comisión:     ${a.commissionNote}`]:[]),
+    '',sep,
+    'CONDICIONES',sep,
+    `Exclusividad:      ${exclMap[a.exclusivity]||'–'}`,
+    ...(a.exclusivityNote?[`Detalle:           ${a.exclusivityNote}`]:[]),
+    `Plazo estimado:    ${a.time||'–'}`,
+    `Pisos en cartera:  ${a.similar?a.similar+' pisos similares':'–'}`,
+    `Cert. energético:  ${a.certEnergetico||'–'}`,
+    `Cédula habitab.:   ${a.cedula||'–'}`,
+    `Parking:           ${a.parking||'–'}`,
+    ...(a.comunidad?[``,`Comunidad/docs pendientes:`,a.comunidad]:[]),
+    '',sep,
+    'MARKETING Y VISITAS',sep,
+    `Incluye:           ${(a.marketing||[]).join(', ')||'–'}`,
+    ...(a.visitas?[`Visitas:           ${a.visitas}`]:[]),
+    '',sep,
+    'OPINIÓN DEL PISO',sep,
+    ...(a.opinion&&a.opinion.length?[`Destacan:          ${a.opinion.join(', ')}`]:[]),
+    ...(a.opinionNotes?[`Observaciones:`,a.opinionNotes]:[]),
+    '',sep,
+    'SIGUIENTE PASO Y VALORACIÓN',sep,
+    ...(a.nextStep?[`Próximo paso:`,a.nextStep,'']:[]),
+    ...(a.sensacion?[`Sensación general:`,a.sensacion,'']:[]),
+    ...(a.notes?[`Notas adicionales:`,a.notes,'']:[]),
+    '══════════════════════════════════════════',
     `Exportado: ${new Date().toLocaleString('es-ES')}`,
   ];
-  const blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = `${a.name.replace(/\s+/g,'-')}.txt`;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement('a');
+  link.href=url;link.download=`${a.name.replace(/\s+/g,'-')}.txt`;
+  document.body.appendChild(link);link.click();document.body.removeChild(link);
   URL.revokeObjectURL(url);
   showToast(`Exportado: ${a.name}.txt`);
 }
 
-/* ══ FORM (nueva ficha) ══ */
+/* ══ FORM (nueva) ══ */
 function resetForm(){
-  editId = null; formStars = 0; formExcl = 'no';
-  formMkt = ['Fotos profesionales','Idealista','Fotocasa'];
-  const mktHTML = MKT_OPTIONS.map(o=>`<div class="mkt-check${formMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togMkt(this)">${o.e} ${o.k}</div>`).join('');
-  document.getElementById('form-inner').innerHTML = `
+  formStars=0;formExcl='no';formMkt=['Fotos profesionales','Idealista','Fotocasa'];
+  const mktHTML=MKT_OPTIONS.map(o=>`<div class="mkt-check${formMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togMkt(this)">${o.e} ${o.k}</div>`).join('');
+  document.getElementById('form-inner').innerHTML=`
     <div class="form-section">
       <div class="form-section-title">Identificación</div>
       <div class="field"><label class="lbl">Nombre de la inmobiliaria</label><input class="inp" id="f-name" type="text" placeholder="Ej: Engel &amp; Völkers"/></div>
@@ -556,7 +622,7 @@ function resetForm(){
     <div class="form-section">
       <div class="form-section-title">Valoración económica</div>
       <div class="inp-row">
-        <div class="field"><label class="lbl">Precio valorado (€)</label><input class="inp" id="f-price" type="number" placeholder="320000" oninput="updateCalc()"/></div>
+        <div class="field"><label class="lbl">Precio salida (€)</label><input class="inp" id="f-price" type="number" placeholder="300000" oninput="updateCalc()"/></div>
         <div class="field"><label class="lbl">Comisión (%)</label><input class="inp" id="f-commission" type="number" placeholder="3" step="0.1" oninput="updateCalc()"/></div>
       </div>
       <div class="calc-preview" id="calc-preview">
@@ -575,10 +641,9 @@ function resetForm(){
         </div>
       </div>
       <div class="field"><label class="lbl">Tiempo estimado de venta</label><input class="inp" id="f-time" type="text" placeholder="Ej: 2–3 meses"/></div>
-      <div class="field"><label class="lbl">Pisos similares en cartera</label><input class="inp" id="f-similar" type="number" placeholder="Ej: 4"/></div>
     </div>
     <div class="form-section">
-      <div class="form-section-title">Plan de marketing</div>
+      <div class="form-section-title">Marketing</div>
       <div class="field"><label class="lbl">¿Qué incluyen?</label><div class="mkt-checks" id="mkt-checks">${mktHTML}</div></div>
     </div>
     <div class="form-section">
@@ -588,89 +653,69 @@ function resetForm(){
           ${[1,2,3,4,5].map(n=>`<span class="star-btn" data-s="${n}" onclick="setStar(${n})">★</span>`).join('')}
         </div>
       </div>
-      <div class="field"><label class="lbl">Notas y referencias</label><textarea class="inp" id="f-notes" rows="4" placeholder="Impresión, referencias de clientes, condiciones especiales…"></textarea></div>
+      <div class="field"><label class="lbl">Sensación general / notas</label><textarea class="inp" id="f-notes" rows="3" placeholder="Primera impresión, condiciones especiales…"></textarea></div>
     </div>
     <div style="display:flex;gap:7px;padding-bottom:8px">
       <button class="btn btn-outline" style="flex:1" onclick="showPage('lista')">Cancelar</button>
       <button class="btn btn-ink" style="flex:2" onclick="saveAgency()">Guardar inmobiliaria</button>
-    </div>
-  `;
+    </div>`;
 }
 
 function updateCalc(){
   const p=parseFloat(document.getElementById('f-price')?.value);
   const c=parseFloat(document.getElementById('f-commission')?.value);
-  const pr=document.getElementById('calc-preview');
-  if(!pr)return;
-  if(p&&c){
-    document.getElementById('calc-price').textContent=fmtEur(p);
-    document.getElementById('calc-comm').textContent=fmtEur(p*c/100);
-    document.getElementById('calc-net').textContent=fmtEur(p-p*c/100);
-    pr.classList.add('show');
-  } else { pr.classList.remove('show'); }
+  const pr=document.getElementById('calc-preview');if(!pr)return;
+  if(p&&c){document.getElementById('calc-price').textContent=fmtEur(p);document.getElementById('calc-comm').textContent=fmtEur(p*c/100);document.getElementById('calc-net').textContent=fmtEur(p-p*c/100);pr.classList.add('show')}
+  else{pr.classList.remove('show')}
 }
-function setStar(n){ formStars=n; document.querySelectorAll('.star-btn').forEach(b=>b.classList.toggle('on',+b.dataset.s<=n)); }
-function selToggle(g,el){ document.querySelectorAll(`.tog[data-${g}]`).forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); if(g==='excl') formExcl=el.dataset.excl; }
-function togMkt(el){ el.classList.toggle('sel'); const k=el.dataset.mkt; if(el.classList.contains('sel')){ if(!formMkt.includes(k)) formMkt.push(k); } else { formMkt=formMkt.filter(m=>m!==k); } }
+function setStar(n){formStars=n;document.querySelectorAll('.star-btn').forEach(b=>b.classList.toggle('on',+b.dataset.s<=n))}
+function selToggle(g,el){document.querySelectorAll(`.tog[data-${g}]`).forEach(b=>b.classList.remove('sel'));el.classList.add('sel');if(g==='excl')formExcl=el.dataset.excl}
+function togMkt(el){el.classList.toggle('sel');const k=el.dataset.mkt;if(el.classList.contains('sel')){if(!formMkt.includes(k))formMkt.push(k)}else{formMkt=formMkt.filter(m=>m!==k)}}
 
 function saveAgency(){
-  const name = document.getElementById('f-name')?.value.trim();
-  if(!name){ showToast('Escribe el nombre de la inmobiliaria'); return; }
-  const agency = {
-    id: Date.now().toString(), name,
-    date: document.getElementById('f-date')?.value||new Date().toISOString().split('T')[0],
-    agent: document.getElementById('f-agent')?.value.trim()||'',
-    price: parseFloat(document.getElementById('f-price')?.value)||null,
-    commission: parseFloat(document.getElementById('f-commission')?.value)||null,
-    exclusivity: formExcl,
-    time: document.getElementById('f-time')?.value.trim()||'',
-    similar: parseInt(document.getElementById('f-similar')?.value)||null,
-    marketing: [...formMkt],
-    stars: formStars,
-    notes: document.getElementById('f-notes')?.value.trim()||'',
+  const name=document.getElementById('f-name')?.value.trim();
+  if(!name){showToast('Escribe el nombre de la inmobiliaria');return;}
+  const agency={
+    id:Date.now().toString(),name,
+    date:document.getElementById('f-date')?.value||new Date().toISOString().split('T')[0],
+    agent:document.getElementById('f-agent')?.value.trim()||'',
+    price:parseFloat(document.getElementById('f-price')?.value)||null,
+    priceMin:null,priceMax:null,
+    commission:parseFloat(document.getElementById('f-commission')?.value)||null,
+    commissionNote:'',exclusivity:formExcl,exclusivityNote:'',
+    time:document.getElementById('f-time')?.value.trim()||'',similar:null,
+    marketing:[...formMkt],certEnergetico:'',cedula:'',parking:'',comunidad:'',
+    stars:formStars,opinion:[],opinionNotes:'',visitas:'',nextStep:'',
+    sensacion:document.getElementById('f-notes')?.value.trim()||'',notes:'',
   };
-  DB.agencies.push(agency);
-  save(); renderLista(); renderCompare();
-  showPage('lista');
-  showToast(`${name} añadida ✓`);
+  DB.agencies.push(agency);save();renderLista();renderCompare();
+  showPage('lista');showToast(`${name} añadida ✓`);
 }
 
 /* ══ DELETE ══ */
-function confirmDelete(id,name){
-  deleteId=id;
-  document.getElementById('del-msg').textContent=`¿Eliminar la ficha de "${name}"? No se puede deshacer.`;
-  openM('m-del');
-}
-function doDelete(){
-  DB.agencies=DB.agencies.filter(a=>a.id!==deleteId);
-  save(); closeM('m-del'); showPage('lista'); renderLista(); renderCompare();
-  showToast('Ficha eliminada');
-}
+function confirmDelete(id,name){deleteId=id;document.getElementById('del-msg').textContent=`¿Eliminar la ficha de "${name}"? No se puede deshacer.`;openM('m-del')}
+function doDelete(){DB.agencies=DB.agencies.filter(a=>a.id!==deleteId);save();closeM('m-del');showPage('lista');renderLista();renderCompare();showToast('Ficha eliminada')}
 
 /* ══ NAV ══ */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-  const p=document.getElementById('page-'+id);
-  if(p) p.classList.add('on');
-  const n=document.getElementById('nb-'+id);
-  if(n) n.classList.add('on');
-  if(id==='lista') renderLista();
-  if(id==='comparar') renderCompare();
+  const p=document.getElementById('page-'+id);if(p)p.classList.add('on');
+  const n=document.getElementById('nb-'+id);if(n)n.classList.add('on');
+  if(id==='lista')renderLista();
+  if(id==='comparar')renderCompare();
 }
 
-/* ══ MODAL ══ */
-function openM(id){ const m=document.getElementById(id);m.classList.add('open');const c=e=>{if(e.target===m){closeM(id);m.removeEventListener('click',c)}};m.addEventListener('click',c) }
-function closeM(id){ document.getElementById(id).classList.remove('open') }
-
-/* ══ TOAST ══ */
+/* ══ MODAL / TOAST ══ */
+function openM(id){const m=document.getElementById(id);m.classList.add('open');const c=e=>{if(e.target===m){closeM(id);m.removeEventListener('click',c)}};m.addEventListener('click',c)}
+function closeM(id){document.getElementById(id).classList.remove('open')}
 let tt;
-function showToast(msg){ const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500) }
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500)}
 
 /* ══ INIT ══ */
 function init(){
-  load(); renderLista(); renderCompare(); resetForm();
-  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw-inmo.js').catch(()=>{});
+  load();renderLista();renderCompare();resetForm();
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw-inmo.js').catch(()=>{});
 }
 init();
 </script>
