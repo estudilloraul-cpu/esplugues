@@ -286,29 +286,31 @@ const DEMO_AGENCIES = [
     name:'Fincas Juma',
     agent:'',
     date:new Date().toISOString().split('T')[0],
-    stars:0,
-    price:null,priceMin:null,priceMax:null,
+    stars:2,
+    price:247000,priceMin:235000,priceMax:260000,
     commission:null,commissionNote:'',
     exclusivity:'si',
-    exclusivityNote:'Piden exclusividad.',
-    time:'',similar:null,
+    exclusivityNote:'Piden exclusividad. Campaña en plataformas tipo Idealista y similares.',
+    time:'Más lento si precio supera ~2.839 €/m²',similar:null,
     marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],
     certEnergetico:'',cedula:'',parking:'',comunidad:'',
-    opinion:[],opinionNotes:'',visitas:'',nextStep:'',
-    sensacion:'Campaña en plataformas tipo Idealista y similares.',
+    opinion:['Buena luz','Estancias amplias','Para entrar a vivir','Baño reformado'],
+    opinionNotes:'Informe automático describe el piso como: 87 m², 3 hab., 1 baño, reformado, exterior, con ascensor, A/C y calefacción.\n\nComparables usados: pisos entre ~199k y 275k. Según su cálculo, pisos por encima de ~2.839 €/m² tardan más en venderse — situaría 300k como precio alto para su estimación.\n\nValoración automática:\n• Venta rápida: 235.000 €\n• Precio óptimo: 247.000 €\n• Fuera de mercado: 260.000 €',
+    visitas:'',nextStep:'',
+    sensacion:'Informe bastante más conservador que José Ángel (Don Piso). Valoración muy automática y genérica — los comparables no parecen especialmente similares ni premium. No refleja bien la luz, amplitud, estado ni la sensación real del piso.\n\nPuede servir como referencia prudente o suelo de negociación, pero hay que contrastar con la valoración de Don Piso, su estrategia comercial y los precios reales cerrados en la zona.',
     notes:'',
   }
 ];
 
 function load(){
   try{
-    const r=localStorage.getItem('inmo26');
+    const r=localStorage.getItem('inmo27');
     if(r){DB={...DB,...JSON.parse(r)};return;}
   }catch(e){}
   DB.agencies=[...DEMO_AGENCIES];
   save();
 }
-function save(){localStorage.setItem('inmo26',JSON.stringify(DB))}
+function save(){localStorage.setItem('inmo27',,JSON.stringify(DB))}
 
 /* ══ FORMAT ══ */
 const fmtEur=n=>n?new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n):'–';
