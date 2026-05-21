@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#1a1410"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Piso Esplugues"/>
+<link rel="manifest" href="manifest-inmo.json"/>
+<title>Piso Esplugues</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --ink:    #1a1410; --ink2:#3d3228; --ink3:#6b5d4f; --ink4:#a89880;
+  --paper:  #f8f4ee; --paper2:#f0e9de; --paper3:#e5d9c8;
+  --gold:   #c4912a; --gold2:#e8b84b; --gold3:#f5d98a; --gold4:#fdf4dc;
+  --red:    #a83232; --green:#2a6b3a; --green2:#d4edda; --white:#fffef9;
+  --nav:64px; --sb:env(safe-area-inset-bottom,0px); --st:env(safe-area-inset-top,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow:hidden;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:inherit}
+
+#app{display:flex;flex-direction:column;height:100dvh;padding-top:var(--st)}
+
+/* HEADER */
+.hdr{background:var(--ink);color:var(--paper);padding:13px 18px 11px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid var(--ink2)}
+.hdr-brand{display:flex;flex-direction:column;gap:1px}
+.hdr-title{font-family:'DM Sans',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-.02em;line-height:1}
+.hdr-sub-label{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:400;color:var(--ink4);letter-spacing:.13em;text-transform:uppercase;margin-top:3px}
+.hdr-right{display:flex;gap:6px}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--paper);border-radius:6px;padding:6px 11px;font-size:.74rem;font-weight:500;transition:background .15s}
+.hdr-btn:active{background:rgba(255,255,255,.18)}
+.hdr-btn.gold{background:var(--gold);border-color:var(--gold2);color:var(--ink)}
+.hdr-count{font-size:.65rem;color:var(--ink4);margin-top:2px;font-family:'DM Mono',monospace}
+
+/* NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav) + var(--sb));background:var(--ink);border-top:1px solid var(--ink2);display:flex;padding-bottom:var(--sb);z-index:100}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--ink3);font-size:.62rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding-top:5px;transition:color .15s}
+.nb.on{color:var(--gold2)}
+.ni{font-size:1.28rem;line-height:1}
+
+/* PAGES */
+.pages{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav) + var(--sb) + 8px)}
+.page{display:none}.page.on{display:block}
+
+/* EMPTY */
+.list-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55dvh;gap:12px;color:var(--ink4)}
+.list-empty .big{font-size:3rem}
+.list-empty p{font-size:.82rem;text-align:center;line-height:1.5;max-width:240px}
+
+/* ── AGENCY CARD (lista) ── */
+.agency-card{margin:12px 13px 0;border-radius:14px;background:var(--white);border:1px solid var(--paper3);overflow:hidden;cursor:pointer;box-shadow:0 2px 10px rgba(26,20,16,.05);transition:transform .13s,box-shadow .13s}
+.agency-card:active{transform:scale(.99)}
+.ac-top{padding:15px 16px 11px;border-bottom:1px solid var(--paper2);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.ac-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);line-height:1.1}
+.ac-meta{font-size:.63rem;color:var(--ink4);margin-top:2px;font-family:'DM Mono',monospace}
+.excl-badge{font-size:.58rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:4px;margin-top:5px;display:inline-block}
+.excl-si{background:#fdecea;color:var(--red)}.excl-neg{background:var(--gold4);color:var(--gold)}.excl-no{background:var(--green2);color:var(--green)}
+.ac-stars{font-size:.95rem;letter-spacing:-1px;color:var(--gold2)}
+.ac-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid var(--paper2)}
+.ac-cell{padding:10px 13px;border-right:1px solid var(--paper2)}.ac-cell:last-child{border-right:none}
+.ac-cell-lbl{font-size:.56rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:2px;font-family:'DM Mono',monospace}
+.ac-cell-val{font-size:.92rem;font-weight:600;color:var(--ink)}
+.ac-cell-val.hl{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.05rem}
+.ac-cell-val.gr{color:var(--green)}.ac-cell-val.rd{color:var(--red)}
+.ac-bottom{padding:9px 14px 11px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.ac-mkt{display:flex;flex-wrap:wrap;gap:3px}
+.mkt-tag{font-size:.6rem;font-weight:500;background:var(--paper2);color:var(--ink3);padding:2px 6px;border-radius:4px}
+.ac-net{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--ink3)}
+.ac-net b{color:var(--green);font-weight:600}
+.ac-export-btn{font-size:.68rem;font-weight:500;color:var(--ink4);background:var(--paper2);border:1px solid var(--paper3);border-radius:5px;padding:4px 9px;cursor:pointer;transition:background .13s}
+.ac-export-btn:active{background:var(--paper3)}
+
+/* ── COMPARE ── */
+.compare-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50dvh;gap:10px;color:var(--ink4);font-size:.82rem;text-align:center;padding:20px}
+.compare-scroll{overflow-x:auto;padding:12px 13px 0;-webkit-overflow-scrolling:touch}
+.compare-table{border-collapse:collapse;min-width:100%;white-space:nowrap}
+.ct-head th{font-family:'DM Mono',monospace;font-size:.58rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--ink4);padding:10px 13px;text-align:left;border-bottom:1.5px solid var(--paper3);background:var(--paper);position:sticky;top:0}
+.ct-head th:first-child{position:sticky;left:0;z-index:2;background:var(--paper)}
+.compare-table td{padding:11px 13px;border-bottom:1px solid var(--paper2);font-size:.8rem;color:var(--ink);vertical-align:top}
+.compare-table td:first-child{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:600;position:sticky;left:0;background:var(--white);z-index:1;border-right:1.5px solid var(--paper3);min-width:120px}
+.compare-table tr:nth-child(even) td:first-child{background:var(--paper)}
+.compare-table tr:nth-child(even) td{background:var(--paper)}
+.best{color:var(--green);font-weight:700}.worst{color:var(--red)}
+.compare-legend{margin:10px 13px;font-size:.68rem;color:var(--ink4);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+
+/* ── DETAIL (ficha editable) ── */
+.detail-hero{background:var(--ink);color:var(--paper);padding:18px 18px 14px}
+.detail-name-wrap{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.detail-name-inp{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;background:transparent;border:none;color:var(--paper);outline:none;width:100%;line-height:1.05;border-bottom:1px dashed rgba(255,255,255,.2);padding-bottom:3px}
+.detail-name-inp::placeholder{color:rgba(255,255,255,.3)}
+.detail-meta-inp{font-family:'DM Mono',monospace;font-size:.62rem;background:transparent;border:none;color:var(--ink4);outline:none;width:100%;margin-top:3px}
+.detail-meta-inp::placeholder{color:rgba(168,152,128,.5)}
+.detail-stars-row{margin-top:8px;display:flex;gap:3px}
+.dstar{font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,.2);transition:color .12s;line-height:1}
+.dstar.on{color:var(--gold2)}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--paper3);border-top:1px solid var(--paper3)}
+.dc{background:var(--white);padding:13px 15px}.dc.wide{grid-column:1/-1}
+.dc-lbl{font-family:'DM Mono',monospace;font-size:.56rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--ink4);margin-bottom:5px}
+.dc-inp{width:100%;border:none;background:transparent;font-size:.88rem;font-weight:600;color:var(--ink);outline:none;border-bottom:1px dashed var(--paper3);padding-bottom:2px;transition:border-color .15s}
+.dc-inp:focus{border-color:var(--gold)}
+.dc-inp.big{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold)}
+.dc-inp.gr{color:var(--green)}
+textarea.dc-inp{resize:none;min-height:64px;font-weight:400;font-size:.84rem;line-height:1.5;border-bottom:none;border:1px dashed var(--paper3);border-radius:6px;padding:6px 8px;margin-top:2px}
+textarea.dc-inp:focus{border-color:var(--gold)}
+
+/* Toggle inline */
+.dc-toggle{display:flex;gap:5px;margin-top:4px}
+.dc-tog{flex:1;padding:7px 4px;border-radius:6px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.74rem;font-weight:500;text-align:center;cursor:pointer;transition:all .13s;font-family:'DM Sans',sans-serif}
+.dc-tog.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* Marketing chips inline */
+.dc-mkt{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.dc-mchip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.72rem;font-weight:500;cursor:pointer;transition:all .13s}
+.dc-mchip.sel{background:var(--gold4);border-color:var(--gold);color:var(--ink)}
+
+/* Neto computed */
+.neto-display{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--green);margin-top:2px}
+
+/* Detail actions */
+.detail-actions{display:flex;gap:7px;padding:13px 13px 0;flex-wrap:wrap}
+.detail-actions button{flex:1;min-width:80px}
+.save-indicator{font-size:.68rem;color:var(--green);font-family:'DM Mono',monospace;text-align:center;padding:6px 0;opacity:0;transition:opacity .3s}
+.save-indicator.show{opacity:1}
+
+/* FORM (nueva ficha) */
+.form-wrap{padding:13px 13px 0}
+.form-section{margin-bottom:16px}
+.form-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--paper3)}
+.field{margin-bottom:11px}
+.lbl{font-size:.7rem;font-weight:600;color:var(--ink2);letter-spacing:.02em;margin-bottom:4px;display:block}
+.inp{width:100%;border:1.5px solid var(--paper3);border-radius:7px;padding:10px 11px;font-size:.86rem;color:var(--ink);background:var(--white);outline:none;transition:border .15s;-webkit-appearance:none}
+.inp:focus{border-color:var(--gold)}
+textarea.inp{resize:none;min-height:68px}
+.inp-row{display:flex;gap:7px}.inp-row .field{flex:1}
+.stars-input{display:flex;gap:4px;margin-top:2px}
+.star-btn{font-size:1.5rem;color:var(--paper3);cursor:pointer;transition:color .1s;line-height:1}
+.star-btn.on{color:var(--gold2)}
+.toggle-row{display:flex;gap:5px}
+.tog{flex:1;padding:8px 6px;border-radius:7px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.78rem;font-weight:500;text-align:center;cursor:pointer;transition:all .13s}
+.tog.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.mkt-checks{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+.mkt-check{padding:6px 10px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.74rem;font-weight:500;cursor:pointer;transition:all .13s}
+.mkt-check.sel{background:var(--gold4);border-color:var(--gold);color:var(--ink)}
+.calc-preview{background:var(--ink);color:var(--paper);border-radius:9px;padding:13px 14px;margin-top:7px;display:none}
+.calc-preview.show{display:block}
+.calc-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.calc-row:last-child{margin-bottom:0;padding-top:6px;border-top:1px solid rgba(255,255,255,.1)}
+.calc-lbl{font-size:.7rem;color:var(--ink4)}
+.calc-val{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600}
+.calc-val.green{color:#6be08a}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:12px 16px;border-radius:7px;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .15s;border:none;font-family:inherit}
+.btn-ink{background:var(--ink);color:var(--paper);width:100%;margin-top:5px}
+.btn-ink:active{background:var(--ink2);transform:scale(.99)}
+.btn-outline{border:1.5px solid var(--paper3);color:var(--ink2);background:transparent}
+.btn-outline:active{background:var(--paper2)}
+.btn-danger{background:#fdecea;color:var(--red);border:1.5px solid #f0c0c0}
+.btn-save{background:var(--green);color:var(--white)}
+.btn-save:active{background:#1e5029}
+.btn-export{background:var(--gold4);color:var(--gold);border:1.5px solid var(--gold3)}
+.btn-export:active{background:var(--gold3)}
+
+/* MODAL */
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:200;display:none;align-items:flex-end}
+.backdrop.open{display:flex}
+.sheet{background:var(--paper);border-radius:18px 18px 0 0;width:100%;padding:18px 17px;padding-bottom:calc(18px + var(--sb));transform:translateY(100%);transition:transform .33s cubic-bezier(.32,1,.23,1);max-height:90dvh;overflow-y:auto}
+.backdrop.open .sheet{transform:translateY(0)}
+.handle{width:36px;height:4px;background:var(--paper3);border-radius:99px;margin:0 auto 14px}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.confirm-row{display:flex;gap:8px;margin-top:4px}
+.confirm-row button{flex:1}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(var(--nav) + var(--sb) + 10px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:var(--paper);padding:9px 19px;border-radius:99px;font-size:.78rem;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.28);z-index:999;opacity:0;transition:all .24s ease;white-space:nowrap;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<header class="hdr">
+  <div class="hdr-brand">
+    <div class="hdr-title">Piso Esplugues</div>
+    <div class="hdr-sub-label">Comparador</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+    <div class="hdr-right">
+      <button class="hdr-btn gold" onclick="showPage('form');resetForm()">+ Añadir</button>
+    </div>
+    <div class="hdr-count" id="hdr-count"></div>
+  </div>
+</header>
+
+<div class="pages">
+
+  <!-- LISTA -->
+  <div class="page on" id="page-lista">
+    <div id="lista-content"></div>
+  </div>
+
+  <!-- COMPARAR -->
+  <div class="page" id="page-comparar">
+    <div id="compare-content"></div>
+  </div>
+
+  <!-- FORM (nueva ficha) -->
+  <div class="page" id="page-form">
+    <div class="form-wrap" id="form-inner">
+      <!-- rellenado por resetForm() -->
+    </div>
+  </div>
+
+  <!-- DETAIL (ficha editable) -->
+  <div class="page" id="page-detail">
+    <div id="detail-inner"></div>
+  </div>
+
+</div>
+
+<nav class="bnav">
+  <button class="nb on" id="nb-lista" onclick="showPage('lista')">
+    <span class="ni">🏢</span>Fichas
+  </button>
+  <button class="nb" id="nb-comparar" onclick="showPage('comparar')">
+    <span class="ni">⚖️</span>Comparar
+  </button>
+</nav>
+</div>
+
+<div id="toast"></div>
+
+<div class="backdrop" id="m-del">
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="stitle">¿Eliminar ficha?</div>
+    <p style="font-size:.83rem;color:var(--ink3);margin-bottom:13px;line-height:1.5" id="del-msg"></p>
+    <div class="confirm-row">
+      <button class="btn btn-outline" onclick="closeM('m-del')">Cancelar</button>
+      <button class="btn btn-danger" onclick="doDelete()">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══ DATA ══ */
+const MKT_OPTIONS = [
+  {k:'Fotos profesionales',e:'📷'},{k:'Vídeo/tour virtual',e:'🎥'},
+  {k:'Idealista',e:'🏠'},{k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},
+  {k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},{k:'Plano del piso',e:'📐'},
+];
+
+let DB = {agencies:[]};
+let deleteId = null;
+let formStars = 0, formExcl = 'no';
+let formMkt = ['Fotos profesionales','Idealista','Fotocasa'];
+let editId = null;
+
+/* Datos de demo: Fincas Juma */
+const DEMO = [{
+  id:'juma',
+  name:'Fincas Juma',
+  date: new Date().toISOString().split('T')[0],
+  agent:'',
+  price:null,
+  commission:null,
+  exclusivity:'si',
+  time:'',
+  similar:null,
+  marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],
+  stars:0,
+  notes:'Piden exclusividad. Campaña en plataformas tipo Idealista y similares.'
+}];
+
+function load(){
+  try{
+    const r=localStorage.getItem('inmo25b');
+    if(r){ DB={...DB,...JSON.parse(r)}; return; }
+  }catch(e){}
+  // Primera vez: cargar demo
+  DB.agencies = DEMO;
+  save();
+}
+function save(){ localStorage.setItem('inmo25b', JSON.stringify(DB)) }
+
+/* ══ FORMAT ══ */
+const fmtEur = n => n ? new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n) : '–';
+const fmtDate = iso => iso ? new Date(iso+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'}) : '';
+const starsStr = n => '★'.repeat(n||0)+'☆'.repeat(5-(n||0));
+
+/* ══ RENDER LISTA ══ */
+function renderLista(){
+  const el = document.getElementById('lista-content');
+  const n = DB.agencies.length;
+  document.getElementById('hdr-count').textContent = n===0?'Sin fichas':n===1?'1 inmobiliaria':`${n} inmobiliarias`;
+  if(!n){
+    el.innerHTML=`<div class="list-empty"><div class="big">🏢</div><p>Añade la primera inmobiliaria con <b>+ Añadir</b></p></div>`;
+    return;
+  }
+  el.innerHTML = DB.agencies.map(a=>{
+    const net = a.price&&a.commission ? a.price - a.price*a.commission/100 : null;
+    const exclCls = a.exclusivity==='si'?'excl-si':a.exclusivity==='negociable'?'excl-neg':'excl-no';
+    const exclTxt = a.exclusivity==='si'?'⚠ Exclusiva':a.exclusivity==='negociable'?'↕ Negociable':'✓ Sin exclusiva';
+    return `<div class="agency-card" onclick="openDetail('${a.id}')">
+      <div class="ac-top">
+        <div>
+          <div class="ac-name">${a.name}</div>
+          ${a.agent?`<div class="ac-meta">${a.agent}</div>`:''}
+          <div class="ac-meta">${fmtDate(a.date)}</div>
+          <span class="excl-badge ${exclCls}">${exclTxt}</span>
+        </div>
+        <div style="text-align:right">
+          <div class="ac-stars">${starsStr(a.stars)}</div>
+        </div>
+      </div>
+      <div class="ac-grid">
+        <div class="ac-cell"><div class="ac-cell-lbl">Valoración</div><div class="ac-cell-val hl">${a.price?fmtEur(a.price):'–'}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Comisión</div><div class="ac-cell-val ${a.commission>4?'rd':'gr'}">${a.commission?a.commission+'%':'–'}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Plazo</div><div class="ac-cell-val" style="font-size:.78rem">${a.time||'–'}</div></div>
+      </div>
+      <div class="ac-bottom">
+        <div class="ac-mkt">${(a.marketing||[]).slice(0,3).map(m=>`<span class="mkt-tag">${m}</span>`).join('')}${(a.marketing||[]).length>3?`<span class="mkt-tag">+${a.marketing.length-3}</span>`:''}</div>
+        <div style="display:flex;align-items:center;gap:7px">
+          ${net?`<div class="ac-net">Neto: <b>${fmtEur(net)}</b></div>`:''}
+          <button class="ac-export-btn" onclick="event.stopPropagation();exportTxt('${a.id}')">⬇ TXT</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══ RENDER COMPARE ══ */
+function renderCompare(){
+  const el = document.getElementById('compare-content');
+  if(!DB.agencies.length){el.innerHTML=`<div class="compare-empty"><div style="font-size:2.5rem">⚖️</div><p>Añade al menos una inmobiliaria para comparar</p></div>`;return}
+  const prices=DB.agencies.map(a=>a.price).filter(Boolean);
+  const comms=DB.agencies.map(a=>a.commission).filter(Boolean);
+  const nets=DB.agencies.map(a=>a.price&&a.commission?a.price-a.price*a.commission/100:null).filter(Boolean);
+  const maxPrice=prices.length?Math.max(...prices):null;
+  const minComm=comms.length?Math.min(...comms):null;
+  const maxNet=nets.length?Math.max(...nets):null;
+  const maxStars=DB.agencies.length?Math.max(...DB.agencies.map(a=>a.stars||0)):null;
+  const rows=DB.agencies.map(a=>{
+    const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
+    return `<tr>
+      <td>${a.name}</td>
+      <td class="${a.price===maxPrice?'best':''}">${a.price?fmtEur(a.price):'–'}</td>
+      <td class="${a.commission===minComm?'best':a.commission>(minComm||0)*1.5?'worst':''}">${a.commission?a.commission+'%':'–'}</td>
+      <td class="${net===maxNet?'best':''}">${net?fmtEur(net):'–'}</td>
+      <td>${a.time||'–'}</td>
+      <td>${a.exclusivity==='si'?'⚠ Sí':a.exclusivity==='negociable'?'↕ Neg.':'✓ No'}</td>
+      <td class="${(a.stars||0)===maxStars&&maxStars>0?'best':''}">${'★'.repeat(a.stars||0)}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML=`<div class="compare-scroll"><table class="compare-table">
+    <thead class="ct-head"><tr><th>Inmobiliaria</th><th>Valoración</th><th>Comisión</th><th>Neto para ti</th><th>Plazo</th><th>Exclusiva</th><th>Confianza</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>
+  <div class="compare-legend"><span><b style="color:var(--green)">Verde</b> = mejor dato</span><span><span style="color:var(--red)">Rojo</span> = desfavorable</span></div>`;
+}
+
+/* ══ DETAIL (editable inline) ══ */
+let detailId = null;
+let detailMkt = [];
+let detailExcl = 'no';
+let detailStars = 0;
+
+function openDetail(id){
+  const a = DB.agencies.find(x=>x.id===id);
+  if(!a) return;
+  detailId = id;
+  detailMkt = [...(a.marketing||[])];
+  detailExcl = a.exclusivity||'no';
+  detailStars = a.stars||0;
+
+  const mktChips = MKT_OPTIONS.map(o=>`
+    <div class="dc-mchip${detailMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="toggleDetailMkt(this)">${o.e} ${o.k}</div>
+  `).join('');
+
+  document.getElementById('detail-inner').innerHTML = `
+    <div class="detail-hero">
+      <div class="detail-name-wrap">
+        <input class="detail-name-inp" id="d-name" value="${esc(a.name)}" placeholder="Nombre de la inmobiliaria"/>
+      </div>
+      <input class="detail-meta-inp" id="d-agent" value="${esc(a.agent||'')}" placeholder="Nombre del agente (opcional)"/>
+      <input class="detail-meta-inp" id="d-date" type="date" value="${a.date||''}"/>
+      <div class="detail-stars-row" id="d-stars-row">
+        ${[1,2,3,4,5].map(n=>`<span class="dstar${detailStars>=n?' on':''}" onclick="setDetailStar(${n})">★</span>`).join('')}
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="dc">
+        <div class="dc-lbl">Valoración del piso (€)</div>
+        <input class="dc-inp big" id="d-price" type="number" value="${a.price||''}" placeholder="–" oninput="updateDetailNeto()"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Comisión (%)</div>
+        <input class="dc-inp" id="d-commission" type="number" value="${a.commission||''}" placeholder="–" step="0.1" oninput="updateDetailNeto()"/>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Lo que recibes tú (neto)</div>
+        <div class="neto-display" id="d-neto">${(()=>{const n=a.price&&a.commission?a.price-a.price*a.commission/100:null;return n?fmtEur(n):'–'})()}</div>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">¿Exigen exclusividad?</div>
+        <div class="dc-toggle">
+          <div class="dc-tog${detailExcl==='no'?' sel':''}" data-excl="no" onclick="setDetailExcl(this)">No</div>
+          <div class="dc-tog${detailExcl==='si'?' sel':''}" data-excl="si" onclick="setDetailExcl(this)">Sí</div>
+          <div class="dc-tog${detailExcl==='negociable'?' sel':''}" data-excl="negociable" onclick="setDetailExcl(this)">Negociable</div>
+        </div>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Plazo estimado</div>
+        <input class="dc-inp" id="d-time" value="${esc(a.time||'')}" placeholder="Ej: 2–3 meses"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Pisos similares en cartera</div>
+        <input class="dc-inp" id="d-similar" type="number" value="${a.similar||''}" placeholder="–"/>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Plan de marketing</div>
+        <div class="dc-mkt" id="d-mkt">${mktChips}</div>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Notas, referencias y observaciones</div>
+        <textarea class="dc-inp" id="d-notes" rows="4" placeholder="Impresión, referencias de clientes, condiciones especiales…">${esc(a.notes||'')}</textarea>
+      </div>
+    </div>
+
+    <div id="d-save-indicator" class="save-indicator">✓ Guardado</div>
+
+    <div class="detail-actions">
+      <button class="btn btn-outline" onclick="showPage('lista')">← Volver</button>
+      <button class="btn btn-save" onclick="saveDetail()">💾 Guardar</button>
+      <button class="btn btn-export" onclick="exportTxt('${id}')">⬇ TXT</button>
+      <button class="btn btn-danger" onclick="confirmDelete('${id}','${esc(a.name)}')">🗑</button>
+    </div>
+    <div style="height:16px"></div>
+  `;
+  showPage('detail');
+}
+
+function esc(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;') }
+
+function setDetailStar(n){
+  detailStars = n;
+  document.querySelectorAll('#d-stars-row .dstar').forEach((s,i)=>s.classList.toggle('on',i<n));
+}
+function setDetailExcl(el){
+  document.querySelectorAll('.dc-tog[data-excl]').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  detailExcl = el.dataset.excl;
+}
+function toggleDetailMkt(el){
+  el.classList.toggle('sel');
+  const k = el.dataset.mkt;
+  if(el.classList.contains('sel')){ if(!detailMkt.includes(k)) detailMkt.push(k); }
+  else { detailMkt = detailMkt.filter(m=>m!==k); }
+}
+function updateDetailNeto(){
+  const p = parseFloat(document.getElementById('d-price')?.value);
+  const c = parseFloat(document.getElementById('d-commission')?.value);
+  const el = document.getElementById('d-neto');
+  if(el) el.textContent = (p&&c) ? fmtEur(p - p*c/100) : '–';
+}
+
+function saveDetail(){
+  const a = DB.agencies.find(x=>x.id===detailId);
+  if(!a) return;
+  a.name = document.getElementById('d-name').value.trim() || a.name;
+  a.agent = document.getElementById('d-agent').value.trim();
+  a.date = document.getElementById('d-date').value;
+  a.price = parseFloat(document.getElementById('d-price').value)||null;
+  a.commission = parseFloat(document.getElementById('d-commission').value)||null;
+  a.exclusivity = detailExcl;
+  a.time = document.getElementById('d-time').value.trim();
+  a.similar = parseInt(document.getElementById('d-similar').value)||null;
+  a.marketing = [...detailMkt];
+  a.stars = detailStars;
+  a.notes = document.getElementById('d-notes').value.trim();
+  save();
+  renderLista(); renderCompare();
+  const ind = document.getElementById('d-save-indicator');
+  if(ind){ ind.classList.add('show'); setTimeout(()=>ind.classList.remove('show'),2000); }
+  showToast(`${a.name} guardada ✓`);
+}
+
+/* ══ EXPORT TXT ══ */
+function exportTxt(id){
+  const a = DB.agencies.find(x=>x.id===id);
+  if(!a) return;
+  const net = a.price&&a.commission ? a.price - a.price*a.commission/100 : null;
+  const exclMap = {si:'Sí, exigen exclusiva',negociable:'Negociable',no:'No exigen exclusiva'};
+  const lines = [
+    '══════════════════════════════════',
+    `PISO ESPLUGUES — Ficha de inmobiliaria`,
+    '══════════════════════════════════',
+    '',
+    `Inmobiliaria:     ${a.name}`,
+    `Agente:           ${a.agent||'–'}`,
+    `Fecha visita:     ${fmtDate(a.date)||'–'}`,
+    `Confianza:        ${'★'.repeat(a.stars||0)||'Sin valorar'}`,
+    '',
+    '── Económico ─────────────────────',
+    `Valoración piso:  ${a.price?fmtEur(a.price):'–'}`,
+    `Comisión:         ${a.commission?a.commission+'%':'–'}`,
+    `Neto para ti:     ${net?fmtEur(net):'–'}`,
+    '',
+    '── Condiciones ───────────────────',
+    `Exclusividad:     ${exclMap[a.exclusivity]||'–'}`,
+    `Plazo estimado:   ${a.time||'–'}`,
+    `Pisos similares:  ${a.similar?a.similar+' pisos en cartera':'–'}`,
+    '',
+    '── Marketing ─────────────────────',
+    `Incluye:          ${(a.marketing||[]).join(', ')||'–'}`,
+    '',
+    '── Notas y referencias ───────────',
+    a.notes||'–',
+    '',
+    '══════════════════════════════════',
+    `Exportado: ${new Date().toLocaleString('es-ES')}`,
+  ];
+  const blob = new Blob([lines.join('\n')], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${a.name.replace(/\s+/g,'-')}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  showToast(`Exportado: ${a.name}.txt`);
+}
+
+/* ══ FORM (nueva ficha) ══ */
+function resetForm(){
+  editId = null; formStars = 0; formExcl = 'no';
+  formMkt = ['Fotos profesionales','Idealista','Fotocasa'];
+  const mktHTML = MKT_OPTIONS.map(o=>`<div class="mkt-check${formMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togMkt(this)">${o.e} ${o.k}</div>`).join('');
+  document.getElementById('form-inner').innerHTML = `
+    <div class="form-section">
+      <div class="form-section-title">Identificación</div>
+      <div class="field"><label class="lbl">Nombre de la inmobiliaria</label><input class="inp" id="f-name" type="text" placeholder="Ej: Engel &amp; Völkers"/></div>
+      <div class="field"><label class="lbl">Fecha de la visita</label><input class="inp" id="f-date" type="date" value="${new Date().toISOString().split('T')[0]}"/></div>
+      <div class="field"><label class="lbl">Nombre del agente (opcional)</label><input class="inp" id="f-agent" type="text" placeholder="Ej: María García"/></div>
+    </div>
+    <div class="form-section">
+      <div class="form-section-title">Valoración económica</div>
+      <div class="inp-row">
+        <div class="field"><label class="lbl">Precio valorado (€)</label><input class="inp" id="f-price" type="number" placeholder="320000" oninput="updateCalc()"/></div>
+        <div class="field"><label class="lbl">Comisión (%)</label><input class="inp" id="f-commission" type="number" placeholder="3" step="0.1" oninput="updateCalc()"/></div>
+      </div>
+      <div class="calc-preview" id="calc-preview">
+        <div class="calc-row"><span class="calc-lbl">Precio de venta</span><span class="calc-val" id="calc-price">–</span></div>
+        <div class="calc-row"><span class="calc-lbl">Comisión inmobiliaria</span><span class="calc-val" id="calc-comm">–</span></div>
+        <div class="calc-row"><span class="calc-lbl">Lo que recibes tú</span><span class="calc-val green" id="calc-net">–</span></div>
+      </div>
+    </div>
+    <div class="form-section">
+      <div class="form-section-title">Condiciones</div>
+      <div class="field"><label class="lbl">¿Exigen exclusividad?</label>
+        <div class="toggle-row">
+          <div class="tog sel" data-excl="no" onclick="selToggle('excl',this)">No</div>
+          <div class="tog" data-excl="si" onclick="selToggle('excl',this)">Sí</div>
+          <div class="tog" data-excl="negociable" onclick="selToggle('excl',this)">Negociable</div>
+        </div>
+      </div>
+      <div class="field"><label class="lbl">Tiempo estimado de venta</label><input class="inp" id="f-time" type="text" placeholder="Ej: 2–3 meses"/></div>
+      <div class="field"><label class="lbl">Pisos similares en cartera</label><input class="inp" id="f-similar" type="number" placeholder="Ej: 4"/></div>
+    </div>
+    <div class="form-section">
+      <div class="form-section-title">Plan de marketing</div>
+      <div class="field"><label class="lbl">¿Qué incluyen?</label><div class="mkt-checks" id="mkt-checks">${mktHTML}</div></div>
+    </div>
+    <div class="form-section">
+      <div class="form-section-title">Valoración personal</div>
+      <div class="field"><label class="lbl">Impresión de confianza</label>
+        <div class="stars-input" id="stars-input">
+          ${[1,2,3,4,5].map(n=>`<span class="star-btn" data-s="${n}" onclick="setStar(${n})">★</span>`).join('')}
+        </div>
+      </div>
+      <div class="field"><label class="lbl">Notas y referencias</label><textarea class="inp" id="f-notes" rows="4" placeholder="Impresión, referencias de clientes, condiciones especiales…"></textarea></div>
+    </div>
+    <div style="display:flex;gap:7px;padding-bottom:8px">
+      <button class="btn btn-outline" style="flex:1" onclick="showPage('lista')">Cancelar</button>
+      <button class="btn btn-ink" style="flex:2" onclick="saveAgency()">Guardar inmobiliaria</button>
+    </div>
+  `;
+}
+
+function updateCalc(){
+  const p=parseFloat(document.getElementById('f-price')?.value);
+  const c=parseFloat(document.getElementById('f-commission')?.value);
+  const pr=document.getElementById('calc-preview');
+  if(!pr)return;
+  if(p&&c){
+    document.getElementById('calc-price').textContent=fmtEur(p);
+    document.getElementById('calc-comm').textContent=fmtEur(p*c/100);
+    document.getElementById('calc-net').textContent=fmtEur(p-p*c/100);
+    pr.classList.add('show');
+  } else { pr.classList.remove('show'); }
+}
+function setStar(n){ formStars=n; document.querySelectorAll('.star-btn').forEach(b=>b.classList.toggle('on',+b.dataset.s<=n)); }
+function selToggle(g,el){ document.querySelectorAll(`.tog[data-${g}]`).forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); if(g==='excl') formExcl=el.dataset.excl; }
+function togMkt(el){ el.classList.toggle('sel'); const k=el.dataset.mkt; if(el.classList.contains('sel')){ if(!formMkt.includes(k)) formMkt.push(k); } else { formMkt=formMkt.filter(m=>m!==k); } }
+
+function saveAgency(){
+  const name = document.getElementById('f-name')?.value.trim();
+  if(!name){ showToast('Escribe el nombre de la inmobiliaria'); return; }
+  const agency = {
+    id: Date.now().toString(), name,
+    date: document.getElementById('f-date')?.value||new Date().toISOString().split('T')[0],
+    agent: document.getElementById('f-agent')?.value.trim()||'',
+    price: parseFloat(document.getElementById('f-price')?.value)||null,
+    commission: parseFloat(document.getElementById('f-commission')?.value)||null,
+    exclusivity: formExcl,
+    time: document.getElementById('f-time')?.value.trim()||'',
+    similar: parseInt(document.getElementById('f-similar')?.value)||null,
+    marketing: [...formMkt],
+    stars: formStars,
+    notes: document.getElementById('f-notes')?.value.trim()||'',
+  };
+  DB.agencies.push(agency);
+  save(); renderLista(); renderCompare();
+  showPage('lista');
+  showToast(`${name} añadida ✓`);
+}
+
+/* ══ DELETE ══ */
+function confirmDelete(id,name){
+  deleteId=id;
+  document.getElementById('del-msg').textContent=`¿Eliminar la ficha de "${name}"? No se puede deshacer.`;
+  openM('m-del');
+}
+function doDelete(){
+  DB.agencies=DB.agencies.filter(a=>a.id!==deleteId);
+  save(); closeM('m-del'); showPage('lista'); renderLista(); renderCompare();
+  showToast('Ficha eliminada');
+}
+
+/* ══ NAV ══ */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  const p=document.getElementById('page-'+id);
+  if(p) p.classList.add('on');
+  const n=document.getElementById('nb-'+id);
+  if(n) n.classList.add('on');
+  if(id==='lista') renderLista();
+  if(id==='comparar') renderCompare();
+}
+
+/* ══ MODAL ══ */
+function openM(id){ const m=document.getElementById(id);m.classList.add('open');const c=e=>{if(e.target===m){closeM(id);m.removeEventListener('click',c)}};m.addEventListener('click',c) }
+function closeM(id){ document.getElementById(id).classList.remove('open') }
+
+/* ══ TOAST ══ */
+let tt;
+function showToast(msg){ const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500) }
+
+/* ══ INIT ══ */
+function init(){
+  load(); renderLista(); renderCompare(); resetForm();
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('sw-inmo.js').catch(()=>{});
+}
+init();
+</script>
+</body>
+</html>
