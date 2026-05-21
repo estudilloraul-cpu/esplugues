@@ -27,6 +27,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:va
 button{font-family:inherit;cursor:pointer;border:none;background:none}
 input,textarea,select{font-family:inherit}
 #app{display:flex;flex-direction:column;height:100dvh;padding-top:var(--st)}
+
+/* HDR */
 .hdr{background:var(--ink);color:var(--paper);padding:13px 18px 11px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid var(--ink2)}
 .hdr-title{font-family:'DM Sans',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:-.02em;line-height:1}
 .hdr-sub{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--ink4);letter-spacing:.13em;text-transform:uppercase;margin-top:3px}
@@ -34,15 +36,23 @@ input,textarea,select{font-family:inherit}
 .hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:var(--paper);border-radius:6px;padding:6px 11px;font-size:.74rem;font-weight:500;transition:background .15s}
 .hdr-btn:active{background:rgba(255,255,255,.2)}
 .hdr-btn.gold{background:var(--gold);border-color:var(--gold2);color:var(--ink)}
+
+/* NAV */
 .bnav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav) + var(--sb));background:var(--ink);border-top:1px solid var(--ink2);display:flex;padding-bottom:var(--sb);z-index:100}
 .nb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--ink3);font-size:.62rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding-top:5px;transition:color .15s}
 .nb.on{color:var(--gold2)}
 .ni{font-size:1.28rem;line-height:1}
+
+/* PAGES */
 .pages{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav) + var(--sb) + 8px)}
 .page{display:none}.page.on{display:block}
+
+/* EMPTY */
 .list-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:55dvh;gap:12px;color:var(--ink4)}
 .list-empty .big{font-size:3rem}
 .list-empty p{font-size:.82rem;text-align:center;line-height:1.5;max-width:240px}
+
+/* CARD LISTA */
 .agency-card{margin:12px 13px 0;border-radius:14px;background:var(--white);border:1px solid var(--paper3);overflow:hidden;cursor:pointer;box-shadow:0 2px 10px rgba(26,20,16,.05);transition:transform .13s}
 .agency-card:active{transform:scale(.99)}
 .ac-top{padding:14px 15px 10px;border-bottom:1px solid var(--paper2);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
@@ -65,6 +75,8 @@ input,textarea,select{font-family:inherit}
 .ac-net b{color:var(--green);font-weight:600}
 .ac-export-btn{font-size:.66rem;font-weight:500;color:var(--ink4);background:var(--paper2);border:1px solid var(--paper3);border-radius:5px;padding:4px 8px;cursor:pointer}
 .ac-export-btn:active{background:var(--paper3)}
+
+/* COMPARE */
 .compare-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50dvh;gap:10px;color:var(--ink4);font-size:.82rem;text-align:center;padding:20px}
 .compare-scroll{overflow-x:auto;padding:12px 13px 0;-webkit-overflow-scrolling:touch}
 .compare-table{border-collapse:collapse;min-width:100%;white-space:nowrap}
@@ -76,6 +88,8 @@ input,textarea,select{font-family:inherit}
 .compare-table tr:nth-child(even) td:first-child{background:var(--paper)}
 .best{color:var(--green);font-weight:700}.worst{color:var(--red)}
 .compare-legend{margin:10px 13px;font-size:.66rem;color:var(--ink4);display:flex;gap:14px;flex-wrap:wrap}
+
+/* DETAIL */
 .detail-hero{background:var(--ink);color:var(--paper);padding:17px 17px 13px}
 .d-inp-name{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:600;background:transparent;border:none;color:var(--paper);outline:none;width:100%;line-height:1.05;border-bottom:1px dashed rgba(255,255,255,.18);padding-bottom:3px}
 .d-inp-name::placeholder{color:rgba(255,255,255,.25)}
@@ -85,6 +99,8 @@ input,textarea,select{font-family:inherit}
 .d-stars-row{margin-top:8px;display:flex;gap:4px}
 .dstar{font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,.15);transition:color .1s;line-height:1}
 .dstar.on{color:var(--gold2)}
+
+/* DETAIL GRID */
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--paper3);border-top:1px solid var(--paper3)}
 .dc{background:var(--white);padding:12px 14px}.dc.wide{grid-column:1/-1}.dc.full{grid-column:1/-1}
 .dc-lbl{font-family:'DM Mono',monospace;font-size:.55rem;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--ink4);margin-bottom:5px}
@@ -95,21 +111,35 @@ input,textarea,select{font-family:inherit}
 textarea.dc-inp{resize:none;font-weight:400;font-size:.82rem;line-height:1.55;border-bottom:none;border:1px dashed var(--paper3);border-radius:6px;padding:6px 8px;margin-top:2px;min-height:70px}
 textarea.dc-inp:focus{border-color:var(--gold)}
 .neto-display{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--green);margin-top:2px}
+
+/* TOGGLES inline */
 .dc-toggle{display:flex;gap:5px;margin-top:4px}
 .dc-tog{flex:1;padding:7px 4px;border-radius:6px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.72rem;font-weight:500;text-align:center;cursor:pointer;transition:all .12s}
 .dc-tog.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* MKT chips inline */
 .dc-mkt{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .dc-mchip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.71rem;font-weight:500;cursor:pointer;transition:all .12s}
 .dc-mchip.sel{background:var(--gold4);border-color:var(--gold);color:var(--ink)}
+
+/* Section headers inside detail */
 .dc-section{grid-column:1/-1;background:var(--paper);padding:9px 14px 7px;border-top:1px solid var(--paper3)}
 .dc-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4)}
+
+/* Opinion piso chips */
 .opinion-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .op-chip{padding:5px 9px;border-radius:5px;border:1.5px solid var(--paper3);background:var(--paper);color:var(--ink3);font-size:.71rem;font-weight:500;cursor:pointer;transition:all .12s}
 .op-chip.sel{background:var(--blue2);border-color:#90b8e0;color:var(--blue)}
+
+/* Save indicator */
 .save-indicator{font-size:.67rem;color:var(--green);font-family:'DM Mono',monospace;text-align:center;padding:5px 0;opacity:0;transition:opacity .3s}
 .save-indicator.show{opacity:1}
+
+/* DETAIL ACTIONS */
 .detail-actions{display:flex;gap:6px;padding:12px 13px 0;flex-wrap:wrap}
 .detail-actions button{flex:1;min-width:70px}
+
+/* FORM */
 .form-wrap{padding:13px 13px 0}
 .form-section{margin-bottom:15px}
 .form-section-title{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--paper3)}
@@ -135,6 +165,8 @@ textarea.inp{resize:none;min-height:66px}
 .calc-lbl{font-size:.7rem;color:var(--ink4)}
 .calc-val{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600}
 .calc-val.green{color:#6be08a}
+
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:12px 15px;border-radius:7px;font-size:.83rem;font-weight:600;cursor:pointer;transition:all .15s;border:none;font-family:inherit}
 .btn-ink{background:var(--ink);color:var(--paper);width:100%;margin-top:5px}
 .btn-ink:active{background:var(--ink2);transform:scale(.99)}
@@ -144,6 +176,8 @@ textarea.inp{resize:none;min-height:66px}
 .btn-save{background:var(--green);color:var(--white)}
 .btn-save:active{background:#1e5029}
 .btn-export{background:var(--gold4);color:var(--gold);border:1.5px solid var(--gold3)}
+
+/* MODAL */
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:200;display:none;align-items:flex-end}
 .backdrop.open{display:flex}
 .sheet{background:var(--paper);border-radius:18px 18px 0 0;width:100%;padding:18px 17px;padding-bottom:calc(18px + var(--sb));transform:translateY(100%);transition:transform .33s cubic-bezier(.32,1,.23,1);max-height:90dvh;overflow-y:auto}
@@ -152,6 +186,8 @@ textarea.inp{resize:none;min-height:66px}
 .stitle{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:12px}
 .confirm-row{display:flex;gap:8px;margin-top:4px}
 .confirm-row button{flex:1}
+
+/* TOAST */
 #toast{position:fixed;bottom:calc(var(--nav) + var(--sb) + 10px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:var(--paper);padding:9px 19px;border-radius:99px;font-size:.78rem;font-weight:500;box-shadow:0 8px 28px rgba(0,0,0,.28);z-index:999;opacity:0;transition:all .24s ease;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
@@ -168,18 +204,21 @@ textarea.inp{resize:none;min-height:66px}
     <div class="hdr-count" id="hdr-count"></div>
   </div>
 </header>
+
 <div class="pages">
   <div class="page on" id="page-lista"><div id="lista-content"></div></div>
   <div class="page" id="page-comparar"><div id="compare-content"></div></div>
   <div class="page" id="page-form"><div class="form-wrap" id="form-inner"></div></div>
   <div class="page" id="page-detail"><div id="detail-inner"></div></div>
 </div>
+
 <nav class="bnav">
   <button class="nb on" id="nb-lista" onclick="showPage('lista')"><span class="ni">🏢</span>Fichas</button>
   <button class="nb" id="nb-comparar" onclick="showPage('comparar')"><span class="ni">⚖️</span>Comparar</button>
 </nav>
 </div>
 <div id="toast"></div>
+
 <div class="backdrop" id="m-del">
   <div class="sheet">
     <div class="handle"></div>
@@ -191,22 +230,122 @@ textarea.inp{resize:none;min-height:66px}
     </div>
   </div>
 </div>
+
 <script>
-const MKT_OPTIONS=[{k:'Fotos profesionales',e:'📷'},{k:'Fotógrafo profesional',e:'📸'},{k:'Vídeo/tour virtual',e:'🎥'},{k:'Idealista',e:'🏠'},{k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},{k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},{k:'Plano del piso',e:'📐'},{k:'Todas las plataformas',e:'🌐'}];
-const OPINION_OPTIONS=['Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado','Estancias amplias','Posibilidad baño extra','Cocina amplia','Terraza/balcón','Buen estado general','Potencial de mejora','Zona tranquila','Buenas comunicaciones'];
-let DB={agencies:[]};
-let deleteId=null,detailId=null,detailMkt=[],detailExcl='no',detailStars=0,detailOpinion=[];
-let formStars=0,formExcl='no',formMkt=['Fotos profesionales','Idealista','Fotocasa'];
-const DEMO_AGENCIES=[
-  {id:'donpiso',name:'Don Piso',agent:'José Ángel',date:new Date().toISOString().split('T')[0],stars:5,price:307500,priceMin:300000,priceMax:315000,commission:3,commissionNote:'3% + IVA, negociable. Dispuesto a ajustarse si hace falta.',exclusivity:'no',exclusivityNote:'No pide exclusividad. Prefiere sin ella porque genera tensiones. Sí pide documento de autorización de visitas y entrega de llaves (por protección y control).',time:'A determinar',similar:null,marketing:['Fotógrafo profesional','Todas las plataformas','Idealista','Fotocasa'],certEnergetico:'170€ con su técnico (solo si no vende él el piso)',cedula:'Incluida en los 170€',parking:'No incluir de entrada. Solo mencionar si el comprador pregunta.',comunidad:'Pendiente: pedir cuota al administrador. Pedir ITE de la finca (debe existir por reforma fachada). Confirmar derramas.',opinion:['Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado','Estancias amplias','Potencial de mejora'],opinionNotes:'Ha hecho medición completa con láser. Venta cercana de referencia: salida 310k, cierre 285k. Menciona posibilidad de añadir aseo/baño extra.',visitas:'Avisa con antelación. Se desactiva alarma antes de la visita y se reactiva después.',nextStep:'Quedar un día para entregarle la llave. Antes, enviarle por mail el documento/autorización.',sensacion:'Muy buena opción. Honesto, con experiencia, transmite confianza. Lleva muchos años vendiendo pisos. Potente estructura y buen alcance. Muy buena sensación, junto con Xavi es la mejor opción.',notes:''},
-  {id:'juma',name:'Fincas Juma',agent:'',date:new Date().toISOString().split('T')[0],stars:2,price:247000,priceMin:235000,priceMax:260000,commission:null,commissionNote:'',exclusivity:'si',exclusivityNote:'Piden exclusividad. Campaña en plataformas tipo Idealista y similares.',time:'Más lento si precio supera ~2.839 €/m²',similar:null,marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],certEnergetico:'',cedula:'',parking:'',comunidad:'',opinion:['Buena luz','Estancias amplias','Para entrar a vivir','Baño reformado'],opinionNotes:'Informe automático describe el piso como: 87 m², 3 hab., 1 baño, reformado, exterior, con ascensor, A/C y calefacción.\n\nComparables usados: pisos entre ~199k y 275k. Según su cálculo, pisos por encima de ~2.839 €/m² tardan más en venderse — situaría 300k como precio alto para su estimación.\n\nValoración automática:\n• Venta rápida: 235.000 €\n• Precio óptimo: 247.000 €\n• Fuera de mercado: 260.000 €',visitas:'',nextStep:'',sensacion:'Informe bastante más conservador que José Ángel (Don Piso). Valoración muy automática y genérica — los comparables no parecen especialmente similares ni premium. No refleja bien la luz, amplitud, estado ni la sensación real del piso.\n\nPuede servir como referencia prudente o suelo de negociación, pero hay que contrastar con la valoración de Don Piso, su estrategia comercial y los precios reales cerrados en la zona.',notes:''}
+/* ══ CONSTANTS ══ */
+const MKT_OPTIONS = [
+  {k:'Fotos profesionales',e:'📷'},{k:'Fotógrafo profesional',e:'📸'},
+  {k:'Vídeo/tour virtual',e:'🎥'},{k:'Idealista',e:'🏠'},
+  {k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},
+  {k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},
+  {k:'Plano del piso',e:'📐'},{k:'Todas las plataformas',e:'🌐'},
 ];
-function load(){try{const r=localStorage.getItem('inmo27');if(r){DB={...DB,...JSON.parse(r)};return;}}catch(e){}DB.agencies=[...DEMO_AGENCIES];save();}
-function save(){localStorage.setItem('inmo27',JSON.stringify(DB))}
+const OPINION_OPTIONS = [
+  'Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado',
+  'Estancias amplias','Posibilidad baño extra','Cocina amplia','Terraza/balcón',
+  'Buen estado general','Potencial de mejora','Zona tranquila','Buenas comunicaciones',
+];
+
+/* ══ DATA ══ */
+let DB = {agencies:[]};
+let deleteId = null;
+let detailId = null, detailMkt=[], detailExcl='no', detailStars=0, detailOpinion=[];
+let formStars=0, formExcl='no', formMkt=['Fotos profesionales','Idealista','Fotocasa'];
+
+/* Demo data: Don Piso */
+const DEMO_AGENCIES = [
+  {
+    id:'donpiso',
+    name:'Don Piso',
+    agent:'José Ángel',
+    date:new Date().toISOString().split('T')[0],
+    stars:5,
+    price:307500,
+    priceMin:300000,
+    priceMax:315000,
+    commission:3,
+    commissionNote:'3% + IVA, negociable. Dispuesto a ajustarse si hace falta.',
+    exclusivity:'no',
+    exclusivityNote:'No pide exclusividad. Prefiere sin ella porque genera tensiones. Sí pide documento de autorización de visitas y entrega de llaves (por protección y control).',
+    time:'A determinar',
+    similar:null,
+    marketing:['Fotógrafo profesional','Todas las plataformas','Idealista','Fotocasa'],
+    certEnergetico:'170€ con su técnico (solo si no vende él el piso)',
+    cedula:'Incluida en los 170€',
+    parking:'No incluir de entrada. Solo mencionar si el comprador pregunta.',
+    comunidad:'Pendiente: pedir cuota al administrador. Pedir ITE de la finca (debe existir por reforma fachada). Confirmar derramas.',
+    opinion:['Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado','Estancias amplias','Potencial de mejora'],
+    opinionNotes:'Ha hecho medición completa con láser. Venta cercana de referencia: salida 310k, cierre 285k. Menciona posibilidad de añadir aseo/baño extra.',
+    visitas:'Avisa con antelación. Se desactiva alarma antes de la visita y se reactiva después.',
+    nextStep:'Quedar un día para entregarle la llave. Antes, enviarle por mail el documento/autorización.',
+    sensacion:'Muy buena opción. Honesto, con experiencia, transmite confianza. Lleva muchos años vendiendo pisos. Potente estructura y buen alcance. Muy buena sensación, junto con Xavi es la mejor opción.',
+    notes:'',
+  },
+  {
+    id:'lacasa',
+    name:'La Casa',
+    agent:'Andrés',
+    date:new Date().toISOString().split('T')[0],
+    stars:2,
+    price:260000,
+    priceMin:250000,
+    priceMax:260000,
+    commission:null,
+    commissionNote:'No trabajan por comisión tradicional. Vosotros fijáis un precio mínimo y ellos intentan vender por encima — el margen es su beneficio. Empezaron desde 250k, Andrés dijo que quizá "10k más". Muy lejos de los 300k–315k de José Ángel.',
+    exclusivity:'no',
+    exclusivityNote:'No especificado. Modelo de margen: vosotros fijáis precio mínimo y ellos capturan la diferencia como beneficio.',
+    time:'',
+    similar:null,
+    marketing:['Idealista','Fotocasa'],
+    certEnergetico:'~400€ (dicen que lo cubren ellos — contrasta con los ~170€ de Don Piso)',
+    cedula:'Incluida en los ~400€',
+    parking:'',
+    comunidad:'',
+    opinion:[],
+    opinionNotes:'Le sorprendió el piso al verlo. Valoración inicial de 250k. No tomó medidas ni hizo preguntas técnicas sobre distribución o posibilidades.',
+    visitas:'',
+    nextStep:'',
+    sensacion:'Valoración baja desde el inicio comparada con José Ángel. Enfoque mucho más agresivo y comercial.\n\nPosible estrategia: venderos idea de precio bajo, luego vender bastante más alto, o ganar margen con extras (reformas, seguros, financiación). Ofrece servicios adicionales: broker de seguros, servicios de reforma, vías para sacar rentabilidad.\n\nComparación con José Ángel: José Ángel midió todo con láser, hizo preguntas técnicas concretas y analizó distribución y posibilidades reales. Andrés no tomó medidas y parecía centrado en el modelo comercial.\n\nAndrés no parece deshonesto, pero sí mucho más agresivo comercialmente. Don Piso trabaja como agencia clásica y transparente; La Casa parece orientada a maximizar su margen propio. Mejor feeling y más confianza con Don Piso.',
+    notes:'',
+  },
+  {
+    id:'juma',
+    name:'Fincas Juma',
+    agent:'',
+    date:new Date().toISOString().split('T')[0],
+    stars:2,
+    price:247000,priceMin:235000,priceMax:260000,
+    commission:null,commissionNote:'',
+    exclusivity:'si',
+    exclusivityNote:'Piden exclusividad. Campaña en plataformas tipo Idealista y similares.',
+    time:'Más lento si precio supera ~2.839 €/m²',similar:null,
+    marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],
+    certEnergetico:'',cedula:'',parking:'',comunidad:'',
+    opinion:['Buena luz','Estancias amplias','Para entrar a vivir','Baño reformado'],
+    opinionNotes:'Informe automático describe el piso como: 87 m², 3 hab., 1 baño, reformado, exterior, con ascensor, A/C y calefacción.\n\nComparables usados: pisos entre ~199k y 275k. Según su cálculo, pisos por encima de ~2.839 €/m² tardan más en venderse — situaría 300k como precio alto para su estimación.\n\nValoración automática:\n• Venta rápida: 235.000 €\n• Precio óptimo: 247.000 €\n• Fuera de mercado: 260.000 €',
+    visitas:'',nextStep:'',
+    sensacion:'Informe bastante más conservador que José Ángel (Don Piso). Valoración muy automática y genérica — los comparables no parecen especialmente similares ni premium. No refleja bien la luz, amplitud, estado ni la sensación real del piso.\n\nPuede servir como referencia prudente o suelo de negociación, pero hay que contrastar con la valoración de Don Piso, su estrategia comercial y los precios reales cerrados en la zona.',
+    notes:'',
+  }
+];
+
+function load(){
+  try{
+    const r=localStorage.getItem('inmo28');
+    if(r){DB={...DB,...JSON.parse(r)};return;}
+  }catch(e){}
+  DB.agencies=[...DEMO_AGENCIES];
+  save();
+}
+function save(){localStorage.setItem('inmo28',JSON.stringify(DB))}
+
+/* ══ FORMAT ══ */
 const fmtEur=n=>n?new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n):'–';
 const fmtDate=iso=>iso?new Date(iso+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'numeric'}):'';
 const starsStr=n=>'★'.repeat(n||0)+'☆'.repeat(5-(n||0));
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ══ LISTA ══ */
 function renderLista(){
   const el=document.getElementById('lista-content');
   const n=DB.agencies.length;
@@ -217,9 +356,30 @@ function renderLista(){
     const exclCls=a.exclusivity==='si'?'excl-si':a.exclusivity==='negociable'?'excl-neg':'excl-no';
     const exclTxt=a.exclusivity==='si'?'⚠ Exclusiva':a.exclusivity==='negociable'?'↕ Negociable':'✓ Sin exclusiva';
     const rangoTxt=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)}–${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
-    return `<div class="agency-card" onclick="openDetail('${a.id}')"><div class="ac-top"><div><div class="ac-name">${esc(a.name)}</div>${a.agent?`<div class="ac-agent">${esc(a.agent)}</div>`:''}<div class="ac-date">${fmtDate(a.date)}</div><span class="excl-badge ${exclCls}">${exclTxt}</span></div><div style="text-align:right"><div class="ac-stars">${starsStr(a.stars)}</div></div></div><div class="ac-grid"><div class="ac-cell"><div class="ac-cell-lbl">Precio salida</div><div class="ac-cell-val hl" style="font-size:.82rem">${rangoTxt}</div></div><div class="ac-cell"><div class="ac-cell-lbl">Comisión</div><div class="ac-cell-val ${(a.commission||0)>4?'rd':'gr'}">${a.commission?a.commission+'%':'–'}</div></div><div class="ac-cell"><div class="ac-cell-lbl">Neto estimado</div><div class="ac-cell-val gr" style="font-size:.78rem">${net?fmtEur(net):'–'}</div></div></div><div class="ac-bottom"><div class="ac-mkt">${(a.marketing||[]).slice(0,3).map(m=>`<span class="mkt-tag">${m}</span>`).join('')}${(a.marketing||[]).length>3?`<span class="mkt-tag">+${a.marketing.length-3}</span>`:''}</div><button class="ac-export-btn" onclick="event.stopPropagation();exportTxt('${a.id}')">⬇ TXT</button></div></div>`;
+    return `<div class="agency-card" onclick="openDetail('${a.id}')">
+      <div class="ac-top">
+        <div>
+          <div class="ac-name">${esc(a.name)}</div>
+          ${a.agent?`<div class="ac-agent">${esc(a.agent)}</div>`:''}
+          <div class="ac-date">${fmtDate(a.date)}</div>
+          <span class="excl-badge ${exclCls}">${exclTxt}</span>
+        </div>
+        <div style="text-align:right"><div class="ac-stars">${starsStr(a.stars)}</div></div>
+      </div>
+      <div class="ac-grid">
+        <div class="ac-cell"><div class="ac-cell-lbl">Precio salida</div><div class="ac-cell-val hl" style="font-size:.82rem">${rangoTxt}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Comisión</div><div class="ac-cell-val ${(a.commission||0)>4?'rd':'gr'}">${a.commission?a.commission+'%':'–'}</div></div>
+        <div class="ac-cell"><div class="ac-cell-lbl">Neto estimado</div><div class="ac-cell-val gr" style="font-size:.78rem">${net?fmtEur(net):'–'}</div></div>
+      </div>
+      <div class="ac-bottom">
+        <div class="ac-mkt">${(a.marketing||[]).slice(0,3).map(m=>`<span class="mkt-tag">${m}</span>`).join('')}${(a.marketing||[]).length>3?`<span class="mkt-tag">+${a.marketing.length-3}</span>`:''}</div>
+        <button class="ac-export-btn" onclick="event.stopPropagation();exportTxt('${a.id}')">⬇ TXT</button>
+      </div>
+    </div>`;
   }).join('');
 }
+
+/* ══ COMPARE ══ */
 function renderCompare(){
   const el=document.getElementById('compare-content');
   if(!DB.agencies.length){el.innerHTML=`<div class="compare-empty"><div style="font-size:2.5rem">⚖️</div><p>Añade inmobiliarias para comparar</p></div>`;return;}
@@ -233,51 +393,152 @@ function renderCompare(){
   const rows=DB.agencies.map(a=>{
     const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
     const rango=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)}–${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
-    return `<tr><td>${esc(a.name)}${a.agent?`<br><span style="font-size:.65rem;color:var(--gold)">${esc(a.agent)}</span>`:''}</td><td class="${a.price===maxPrice?'best':''}">${rango}</td><td class="${a.commission===minComm?'best':a.commission>(minComm||0)*1.5?'worst':''}">${a.commission?a.commission+'%':'–'}</td><td class="${net===maxNet?'best':''}">${net?fmtEur(net):'–'}</td><td>${a.exclusivity==='si'?'⚠ Sí':a.exclusivity==='negociable'?'↕ Neg.':'✓ No'}</td><td>${a.certEnergetico||'–'}</td><td class="${(a.stars||0)===maxStars&&maxStars>0?'best':''}">${'★'.repeat(a.stars||0)||'–'}</td></tr>`;
+    return `<tr>
+      <td>${esc(a.name)}${a.agent?`<br><span style="font-size:.65rem;color:var(--gold)">${esc(a.agent)}</span>`:''}
+      </td>
+      <td class="${a.price===maxPrice?'best':''}">${rango}</td>
+      <td class="${a.commission===minComm?'best':a.commission>(minComm||0)*1.5?'worst':''}">${a.commission?a.commission+'%':'–'}</td>
+      <td class="${net===maxNet?'best':''}">${net?fmtEur(net):'–'}</td>
+      <td>${a.exclusivity==='si'?'⚠ Sí':a.exclusivity==='negociable'?'↕ Neg.':'✓ No'}</td>
+      <td>${a.certEnergetico||'–'}</td>
+      <td class="${(a.stars||0)===maxStars&&maxStars>0?'best':''}">${'★'.repeat(a.stars||0)||'–'}</td>
+    </tr>`;
   }).join('');
-  el.innerHTML=`<div class="compare-scroll"><table class="compare-table"><thead class="ct-head"><tr><th>Inmobiliaria</th><th>Precio salida</th><th>Comisión</th><th>Neto</th><th>Exclusiva</th><th>Cert. energético</th><th>Confianza</th></tr></thead><tbody>${rows}</tbody></table></div><div class="compare-legend"><span><b style="color:var(--green)">Verde</b> = mejor</span><span><span style="color:var(--red)">Rojo</span> = desfavorable</span></div>`;
+  el.innerHTML=`<div class="compare-scroll"><table class="compare-table">
+    <thead class="ct-head"><tr><th>Inmobiliaria</th><th>Precio salida</th><th>Comisión</th><th>Neto</th><th>Exclusiva</th><th>Cert. energético</th><th>Confianza</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>
+  <div class="compare-legend"><span><b style="color:var(--green)">Verde</b> = mejor</span><span><span style="color:var(--red)">Rojo</span> = desfavorable</span></div>`;
 }
+
+/* ══ DETAIL ══ */
 function openDetail(id){
-  const a=DB.agencies.find(x=>x.id===id);if(!a)return;
-  detailId=id;detailMkt=[...(a.marketing||[])];detailExcl=a.exclusivity||'no';detailStars=a.stars||0;detailOpinion=[...(a.opinion||[])];
+  const a=DB.agencies.find(x=>x.id===id);
+  if(!a)return;
+  detailId=id; detailMkt=[...(a.marketing||[])]; detailExcl=a.exclusivity||'no';
+  detailStars=a.stars||0; detailOpinion=[...(a.opinion||[])];
+
   const mktChips=MKT_OPTIONS.map(o=>`<div class="dc-mchip${detailMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togDetailMkt(this)">${o.e} ${o.k}</div>`).join('');
   const opChips=OPINION_OPTIONS.map(o=>`<div class="op-chip${detailOpinion.includes(o)?' sel':''}" data-op="${o}" onclick="togDetailOp(this)">${o}</div>`).join('');
   const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
+
   document.getElementById('detail-inner').innerHTML=`
     <div class="detail-hero">
       <input class="d-inp-name" id="d-name" value="${esc(a.name)}" placeholder="Nombre inmobiliaria"/>
       <input class="d-inp-meta" id="d-agent" value="${esc(a.agent||'')}" placeholder="Nombre del agente"/>
       <input class="d-inp-date" id="d-date" type="date" value="${a.date||''}"/>
-      <div class="d-stars-row" id="d-stars">${[1,2,3,4,5].map(n=>`<span class="dstar${detailStars>=n?' on':''}" onclick="setDS(${n})">★</span>`).join('')}</div>
+      <div class="d-stars-row" id="d-stars">
+        ${[1,2,3,4,5].map(n=>`<span class="dstar${detailStars>=n?' on':''}" onclick="setDS(${n})">★</span>`).join('')}
+      </div>
     </div>
+
     <div class="detail-grid">
+
       <div class="dc-section"><div class="dc-section-title">💰 Económico</div></div>
-      <div class="dc"><div class="dc-lbl">Precio orientativo de salida (€)</div><input class="dc-inp big" id="d-price" type="number" value="${a.price||''}" placeholder="–" oninput="updNeto()"/></div>
-      <div class="dc"><div class="dc-lbl">Comisión (%)</div><input class="dc-inp big" id="d-comm" type="number" value="${a.commission||''}" placeholder="–" step="0.1" oninput="updNeto()"/></div>
-      <div class="dc"><div class="dc-lbl">Precio mín. estimado (€)</div><input class="dc-inp" id="d-priceMin" type="number" value="${a.priceMin||''}" placeholder="–"/></div>
-      <div class="dc"><div class="dc-lbl">Precio máx. estimado (€)</div><input class="dc-inp" id="d-priceMax" type="number" value="${a.priceMax||''}" placeholder="–"/></div>
-      <div class="dc wide"><div class="dc-lbl">Neto estimado para ti</div><div class="neto-display" id="d-neto">${net?fmtEur(net):'–'}</div></div>
-      <div class="dc wide"><div class="dc-lbl">Nota sobre comisión</div><textarea class="dc-inp light" id="d-commNote" rows="2">${esc(a.commissionNote||'')}</textarea></div>
+
+      <div class="dc">
+        <div class="dc-lbl">Precio orientativo de salida (€)</div>
+        <input class="dc-inp big" id="d-price" type="number" value="${a.price||''}" placeholder="–" oninput="updNeto()"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Comisión (%)</div>
+        <input class="dc-inp big" id="d-comm" type="number" value="${a.commission||''}" placeholder="–" step="0.1" oninput="updNeto()"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Precio mín. estimado (€)</div>
+        <input class="dc-inp" id="d-priceMin" type="number" value="${a.priceMin||''}" placeholder="–"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Precio máx. estimado (€)</div>
+        <input class="dc-inp" id="d-priceMax" type="number" value="${a.priceMax||''}" placeholder="–"/>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Neto estimado para ti</div>
+        <div class="neto-display" id="d-neto">${net?fmtEur(net):'–'}</div>
+      </div>
+      <div class="dc wide">
+        <div class="dc-lbl">Nota sobre comisión</div>
+        <textarea class="dc-inp light" id="d-commNote" rows="2">${esc(a.commissionNote||'')}</textarea>
+      </div>
+
       <div class="dc-section"><div class="dc-section-title">📋 Condiciones</div></div>
-      <div class="dc wide"><div class="dc-lbl">¿Exigen exclusividad?</div><div class="dc-toggle"><div class="dc-tog${detailExcl==='no'?' sel':''}" data-excl="no" onclick="setDE(this)">No</div><div class="dc-tog${detailExcl==='si'?' sel':''}" data-excl="si" onclick="setDE(this)">Sí</div><div class="dc-tog${detailExcl==='negociable'?' sel':''}" data-excl="negociable" onclick="setDE(this)">Negociable</div></div></div>
-      <div class="dc full"><div class="dc-lbl">Detalles sobre exclusividad / contrato</div><textarea class="dc-inp light" id="d-exclNote" rows="3">${esc(a.exclusivityNote||'')}</textarea></div>
-      <div class="dc"><div class="dc-lbl">Plazo estimado de venta</div><input class="dc-inp light" id="d-time" value="${esc(a.time||'')}" placeholder="Ej: 2–3 meses"/></div>
-      <div class="dc"><div class="dc-lbl">Pisos similares en cartera</div><input class="dc-inp light" id="d-similar" type="number" value="${a.similar||''}" placeholder="–"/></div>
-      <div class="dc"><div class="dc-lbl">Certificado energético</div><input class="dc-inp light" id="d-cert" value="${esc(a.certEnergetico||'')}" placeholder="Ej: 170€ con su técnico"/></div>
-      <div class="dc"><div class="dc-lbl">Cédula de habitabilidad</div><input class="dc-inp light" id="d-cedula" value="${esc(a.cedula||'')}" placeholder="–"/></div>
-      <div class="dc full"><div class="dc-lbl">Parking</div><textarea class="dc-inp light" id="d-parking" rows="2">${esc(a.parking||'')}</textarea></div>
-      <div class="dc full"><div class="dc-lbl">Comunidad y documentación pendiente</div><textarea class="dc-inp light" id="d-comunidad" rows="3">${esc(a.comunidad||'')}</textarea></div>
+
+      <div class="dc wide">
+        <div class="dc-lbl">¿Exigen exclusividad?</div>
+        <div class="dc-toggle">
+          <div class="dc-tog${detailExcl==='no'?' sel':''}" data-excl="no" onclick="setDE(this)">No</div>
+          <div class="dc-tog${detailExcl==='si'?' sel':''}" data-excl="si" onclick="setDE(this)">Sí</div>
+          <div class="dc-tog${detailExcl==='negociable'?' sel':''}" data-excl="negociable" onclick="setDE(this)">Negociable</div>
+        </div>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Detalles sobre exclusividad / contrato</div>
+        <textarea class="dc-inp light" id="d-exclNote" rows="3">${esc(a.exclusivityNote||'')}</textarea>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Plazo estimado de venta</div>
+        <input class="dc-inp light" id="d-time" value="${esc(a.time||'')}" placeholder="Ej: 2–3 meses"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Pisos similares en cartera</div>
+        <input class="dc-inp light" id="d-similar" type="number" value="${a.similar||''}" placeholder="–"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Certificado energético</div>
+        <input class="dc-inp light" id="d-cert" value="${esc(a.certEnergetico||'')}" placeholder="Ej: 170€ con su técnico"/>
+      </div>
+      <div class="dc">
+        <div class="dc-lbl">Cédula de habitabilidad</div>
+        <input class="dc-inp light" id="d-cedula" value="${esc(a.cedula||'')}" placeholder="–"/>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Parking</div>
+        <textarea class="dc-inp light" id="d-parking" rows="2">${esc(a.parking||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Comunidad y documentación pendiente</div>
+        <textarea class="dc-inp light" id="d-comunidad" rows="3">${esc(a.comunidad||'')}</textarea>
+      </div>
+
       <div class="dc-section"><div class="dc-section-title">📢 Marketing y visitas</div></div>
-      <div class="dc full"><div class="dc-lbl">Plan de marketing</div><div class="dc-mkt" id="d-mkt">${mktChips}</div></div>
-      <div class="dc full"><div class="dc-lbl">Funcionamiento de las visitas</div><textarea class="dc-inp light" id="d-visitas" rows="2">${esc(a.visitas||'')}</textarea></div>
+
+      <div class="dc full">
+        <div class="dc-lbl">Plan de marketing</div>
+        <div class="dc-mkt" id="d-mkt">${mktChips}</div>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Funcionamiento de las visitas</div>
+        <textarea class="dc-inp light" id="d-visitas" rows="2">${esc(a.visitas||'')}</textarea>
+      </div>
+
       <div class="dc-section"><div class="dc-section-title">🏠 Opinión del piso</div></div>
-      <div class="dc full"><div class="dc-lbl">¿Qué destacan?</div><div class="opinion-chips" id="d-opinion">${opChips}</div></div>
-      <div class="dc full"><div class="dc-lbl">Observaciones adicionales sobre el piso</div><textarea class="dc-inp light" id="d-opinionNotes" rows="3">${esc(a.opinionNotes||'')}</textarea></div>
+
+      <div class="dc full">
+        <div class="dc-lbl">¿Qué destacan?</div>
+        <div class="opinion-chips" id="d-opinion">${opChips}</div>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Observaciones adicionales sobre el piso</div>
+        <textarea class="dc-inp light" id="d-opinionNotes" rows="3">${esc(a.opinionNotes||'')}</textarea>
+      </div>
+
       <div class="dc-section"><div class="dc-section-title">📌 Siguiente paso y valoración final</div></div>
-      <div class="dc full"><div class="dc-lbl">Próximo paso acordado</div><textarea class="dc-inp light" id="d-nextStep" rows="2">${esc(a.nextStep||'')}</textarea></div>
-      <div class="dc full"><div class="dc-lbl">Sensación general / valoración final</div><textarea class="dc-inp light" id="d-sensacion" rows="3">${esc(a.sensacion||'')}</textarea></div>
-      <div class="dc full"><div class="dc-lbl">Notas libres adicionales</div><textarea class="dc-inp light" id="d-notes" rows="3">${esc(a.notes||'')}</textarea></div>
+
+      <div class="dc full">
+        <div class="dc-lbl">Próximo paso acordado</div>
+        <textarea class="dc-inp light" id="d-nextStep" rows="2">${esc(a.nextStep||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Sensación general / valoración final</div>
+        <textarea class="dc-inp light" id="d-sensacion" rows="3">${esc(a.sensacion||'')}</textarea>
+      </div>
+      <div class="dc full">
+        <div class="dc-lbl">Notas libres adicionales</div>
+        <textarea class="dc-inp light" id="d-notes" rows="3">${esc(a.notes||'')}</textarea>
+      </div>
+
     </div>
+
     <div id="d-save-ind" class="save-indicator">✓ Guardado</div>
     <div class="detail-actions">
       <button class="btn btn-outline" onclick="showPage('lista')">← Volver</button>
@@ -285,37 +546,88 @@ function openDetail(id){
       <button class="btn btn-export" onclick="exportTxt('${id}')">⬇ TXT</button>
       <button class="btn btn-danger" onclick="confirmDelete('${id}','${esc(a.name)}')">🗑</button>
     </div>
-    <div style="height:16px"></div>`;
+    <div style="height:16px"></div>
+  `;
   showPage('detail');
 }
+
 function setDS(n){detailStars=n;document.querySelectorAll('#d-stars .dstar').forEach((s,i)=>s.classList.toggle('on',i<n))}
 function setDE(el){document.querySelectorAll('.dc-tog[data-excl]').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');detailExcl=el.dataset.excl}
 function togDetailMkt(el){el.classList.toggle('sel');const k=el.dataset.mkt;if(el.classList.contains('sel')){if(!detailMkt.includes(k))detailMkt.push(k)}else{detailMkt=detailMkt.filter(m=>m!==k)}}
 function togDetailOp(el){el.classList.toggle('sel');const k=el.dataset.op;if(el.classList.contains('sel')){if(!detailOpinion.includes(k))detailOpinion.push(k)}else{detailOpinion=detailOpinion.filter(o=>o!==k)}}
 function updNeto(){const p=parseFloat(document.getElementById('d-price')?.value);const c=parseFloat(document.getElementById('d-comm')?.value);const el=document.getElementById('d-neto');if(el)el.textContent=(p&&c)?fmtEur(p-p*c/100):'–'}
+
 function saveDetail(){
-  const a=DB.agencies.find(x=>x.id===detailId);if(!a)return;
+  const a=DB.agencies.find(x=>x.id===detailId);
+  if(!a)return;
   const g=id=>document.getElementById(id)?.value.trim()||'';
   const gn=id=>parseFloat(document.getElementById(id)?.value)||null;
-  a.name=g('d-name')||a.name;a.agent=g('d-agent');a.date=g('d-date');a.stars=detailStars;
-  a.price=gn('d-price');a.commission=gn('d-comm');a.priceMin=gn('d-priceMin');a.priceMax=gn('d-priceMax');
-  a.commissionNote=g('d-commNote');a.exclusivity=detailExcl;a.exclusivityNote=g('d-exclNote');
-  a.time=g('d-time');a.similar=parseInt(document.getElementById('d-similar')?.value)||null;
-  a.certEnergetico=g('d-cert');a.cedula=g('d-cedula');a.parking=g('d-parking');a.comunidad=g('d-comunidad');
-  a.marketing=[...detailMkt];a.visitas=g('d-visitas');a.opinion=[...detailOpinion];
-  a.opinionNotes=g('d-opinionNotes');a.nextStep=g('d-nextStep');a.sensacion=g('d-sensacion');a.notes=g('d-notes');
-  save();renderLista();renderCompare();
+  a.name=g('d-name')||a.name; a.agent=g('d-agent'); a.date=g('d-date');
+  a.stars=detailStars; a.price=gn('d-price'); a.commission=gn('d-comm');
+  a.priceMin=gn('d-priceMin'); a.priceMax=gn('d-priceMax');
+  a.commissionNote=g('d-commNote'); a.exclusivity=detailExcl;
+  a.exclusivityNote=g('d-exclNote'); a.time=g('d-time');
+  a.similar=parseInt(document.getElementById('d-similar')?.value)||null;
+  a.certEnergetico=g('d-cert'); a.cedula=g('d-cedula');
+  a.parking=g('d-parking'); a.comunidad=g('d-comunidad');
+  a.marketing=[...detailMkt]; a.visitas=g('d-visitas');
+  a.opinion=[...detailOpinion]; a.opinionNotes=g('d-opinionNotes');
+  a.nextStep=g('d-nextStep'); a.sensacion=g('d-sensacion'); a.notes=g('d-notes');
+  save(); renderLista(); renderCompare();
   const ind=document.getElementById('d-save-ind');
   if(ind){ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),2200)}
   showToast(`${a.name} guardada ✓`);
 }
+
+/* ══ EXPORT TXT ══ */
 function exportTxt(id){
-  const a=DB.agencies.find(x=>x.id===id);if(!a)return;
+  const a=DB.agencies.find(x=>x.id===id);
+  if(!a)return;
   const net=a.price&&a.commission?a.price-a.price*a.commission/100:null;
   const exclMap={si:'Sí, exigen exclusiva',negociable:'Negociable',no:'No exigen exclusiva'};
   const rango=a.priceMin&&a.priceMax?`${fmtEur(a.priceMin)} – ${fmtEur(a.priceMax)}`:(a.price?fmtEur(a.price):'–');
   const sep='─'.repeat(40);
-  const lines=['══════════════════════════════════════════','  PISO ESPLUGUES — Ficha de inmobiliaria','══════════════════════════════════════════','',`Inmobiliaria:      ${a.name}`,`Agente:            ${a.agent||'–'}`,`Fecha visita:      ${fmtDate(a.date)||'–'}`,`Confianza:         ${'★'.repeat(a.stars||0)||'Sin valorar'}`,``,sep,'ECONÓMICO',sep,`Precio de salida:  ${rango}`,`Comisión:          ${a.commission?a.commission+'% + IVA':'–'}`,`Neto estimado:     ${net?fmtEur(net):'–'}`,...(a.commissionNote?[`Nota comisión:     ${a.commissionNote}`]:[]),'',sep,'CONDICIONES',sep,`Exclusividad:      ${exclMap[a.exclusivity]||'–'}`,...(a.exclusivityNote?[`Detalle:           ${a.exclusivityNote}`]:[]),`Plazo estimado:    ${a.time||'–'}`,`Pisos en cartera:  ${a.similar?a.similar+' pisos similares':'–'}`,`Cert. energético:  ${a.certEnergetico||'–'}`,`Cédula habitab.:   ${a.cedula||'–'}`,`Parking:           ${a.parking||'–'}`,...(a.comunidad?['',`Comunidad/docs pendientes:`,a.comunidad]:[]),'',sep,'MARKETING Y VISITAS',sep,`Incluye:           ${(a.marketing||[]).join(', ')||'–'}`,...(a.visitas?[`Visitas:           ${a.visitas}`]:[]),'',sep,'OPINIÓN DEL PISO',sep,...(a.opinion&&a.opinion.length?[`Destacan:          ${a.opinion.join(', ')}`]:[]),...(a.opinionNotes?[`Observaciones:`,a.opinionNotes]:[]),'',sep,'SIGUIENTE PASO Y VALORACIÓN',sep,...(a.nextStep?[`Próximo paso:`,a.nextStep,'']:[]),...(a.sensacion?[`Sensación general:`,a.sensacion,'']:[]),...(a.notes?[`Notas adicionales:`,a.notes,'']:[]),'══════════════════════════════════════════',`Exportado: ${new Date().toLocaleString('es-ES')}`];
+  const lines=[
+    '══════════════════════════════════════════',
+    '  PISO ESPLUGUES — Ficha de inmobiliaria',
+    '══════════════════════════════════════════',
+    '',
+    `Inmobiliaria:      ${a.name}`,
+    `Agente:            ${a.agent||'–'}`,
+    `Fecha visita:      ${fmtDate(a.date)||'–'}`,
+    `Confianza:         ${'★'.repeat(a.stars||0)||'Sin valorar'}`,
+    '',sep,
+    'ECONÓMICO',sep,
+    `Precio de salida:  ${rango}`,
+    `Comisión:          ${a.commission?a.commission+'% + IVA':'–'}`,
+    `Neto estimado:     ${net?fmtEur(net):'–'}`,
+    ...(a.commissionNote?[`Nota comisión:     ${a.commissionNote}`]:[]),
+    '',sep,
+    'CONDICIONES',sep,
+    `Exclusividad:      ${exclMap[a.exclusivity]||'–'}`,
+    ...(a.exclusivityNote?[`Detalle:           ${a.exclusivityNote}`]:[]),
+    `Plazo estimado:    ${a.time||'–'}`,
+    `Pisos en cartera:  ${a.similar?a.similar+' pisos similares':'–'}`,
+    `Cert. energético:  ${a.certEnergetico||'–'}`,
+    `Cédula habitab.:   ${a.cedula||'–'}`,
+    `Parking:           ${a.parking||'–'}`,
+    ...(a.comunidad?[``,`Comunidad/docs pendientes:`,a.comunidad]:[]),
+    '',sep,
+    'MARKETING Y VISITAS',sep,
+    `Incluye:           ${(a.marketing||[]).join(', ')||'–'}`,
+    ...(a.visitas?[`Visitas:           ${a.visitas}`]:[]),
+    '',sep,
+    'OPINIÓN DEL PISO',sep,
+    ...(a.opinion&&a.opinion.length?[`Destacan:          ${a.opinion.join(', ')}`]:[]),
+    ...(a.opinionNotes?[`Observaciones:`,a.opinionNotes]:[]),
+    '',sep,
+    'SIGUIENTE PASO Y VALORACIÓN',sep,
+    ...(a.nextStep?[`Próximo paso:`,a.nextStep,'']:[]),
+    ...(a.sensacion?[`Sensación general:`,a.sensacion,'']:[]),
+    ...(a.notes?[`Notas adicionales:`,a.notes,'']:[]),
+    '══════════════════════════════════════════',
+    `Exportado: ${new Date().toLocaleString('es-ES')}`,
+  ];
   const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
   const url=URL.createObjectURL(blob);
   const link=document.createElement('a');
@@ -324,16 +636,20 @@ function exportTxt(id){
   URL.revokeObjectURL(url);
   showToast(`Exportado: ${a.name}.txt`);
 }
+
+/* ══ FORM (nueva) ══ */
 function resetForm(){
   formStars=0;formExcl='no';formMkt=['Fotos profesionales','Idealista','Fotocasa'];
   const mktHTML=MKT_OPTIONS.map(o=>`<div class="mkt-check${formMkt.includes(o.k)?' sel':''}" data-mkt="${o.k}" onclick="togMkt(this)">${o.e} ${o.k}</div>`).join('');
   document.getElementById('form-inner').innerHTML=`
-    <div class="form-section"><div class="form-section-title">Identificación</div>
+    <div class="form-section">
+      <div class="form-section-title">Identificación</div>
       <div class="field"><label class="lbl">Nombre de la inmobiliaria</label><input class="inp" id="f-name" type="text" placeholder="Ej: Engel &amp; Völkers"/></div>
       <div class="field"><label class="lbl">Fecha de la visita</label><input class="inp" id="f-date" type="date" value="${new Date().toISOString().split('T')[0]}"/></div>
       <div class="field"><label class="lbl">Nombre del agente (opcional)</label><input class="inp" id="f-agent" type="text" placeholder="Ej: María García"/></div>
     </div>
-    <div class="form-section"><div class="form-section-title">Valoración económica</div>
+    <div class="form-section">
+      <div class="form-section-title">Valoración económica</div>
       <div class="inp-row">
         <div class="field"><label class="lbl">Precio salida (€)</label><input class="inp" id="f-price" type="number" placeholder="300000" oninput="updateCalc()"/></div>
         <div class="field"><label class="lbl">Comisión (%)</label><input class="inp" id="f-commission" type="number" placeholder="3" step="0.1" oninput="updateCalc()"/></div>
@@ -344,7 +660,8 @@ function resetForm(){
         <div class="calc-row"><span class="calc-lbl">Lo que recibes tú</span><span class="calc-val green" id="calc-net">–</span></div>
       </div>
     </div>
-    <div class="form-section"><div class="form-section-title">Condiciones</div>
+    <div class="form-section">
+      <div class="form-section-title">Condiciones</div>
       <div class="field"><label class="lbl">¿Exigen exclusividad?</label>
         <div class="toggle-row">
           <div class="tog sel" data-excl="no" onclick="selToggle('excl',this)">No</div>
@@ -354,12 +671,16 @@ function resetForm(){
       </div>
       <div class="field"><label class="lbl">Tiempo estimado de venta</label><input class="inp" id="f-time" type="text" placeholder="Ej: 2–3 meses"/></div>
     </div>
-    <div class="form-section"><div class="form-section-title">Marketing</div>
+    <div class="form-section">
+      <div class="form-section-title">Marketing</div>
       <div class="field"><label class="lbl">¿Qué incluyen?</label><div class="mkt-checks" id="mkt-checks">${mktHTML}</div></div>
     </div>
-    <div class="form-section"><div class="form-section-title">Valoración personal</div>
+    <div class="form-section">
+      <div class="form-section-title">Valoración personal</div>
       <div class="field"><label class="lbl">Impresión de confianza</label>
-        <div class="stars-input" id="stars-input">${[1,2,3,4,5].map(n=>`<span class="star-btn" data-s="${n}" onclick="setStar(${n})">★</span>`).join('')}</div>
+        <div class="stars-input" id="stars-input">
+          ${[1,2,3,4,5].map(n=>`<span class="star-btn" data-s="${n}" onclick="setStar(${n})">★</span>`).join('')}
+        </div>
       </div>
       <div class="field"><label class="lbl">Sensación general / notas</label><textarea class="inp" id="f-notes" rows="3" placeholder="Primera impresión, condiciones especiales…"></textarea></div>
     </div>
@@ -368,24 +689,63 @@ function resetForm(){
       <button class="btn btn-ink" style="flex:2" onclick="saveAgency()">Guardar inmobiliaria</button>
     </div>`;
 }
-function updateCalc(){const p=parseFloat(document.getElementById('f-price')?.value);const c=parseFloat(document.getElementById('f-commission')?.value);const pr=document.getElementById('calc-preview');if(!pr)return;if(p&&c){document.getElementById('calc-price').textContent=fmtEur(p);document.getElementById('calc-comm').textContent=fmtEur(p*c/100);document.getElementById('calc-net').textContent=fmtEur(p-p*c/100);pr.classList.add('show')}else{pr.classList.remove('show')}}
+
+function updateCalc(){
+  const p=parseFloat(document.getElementById('f-price')?.value);
+  const c=parseFloat(document.getElementById('f-commission')?.value);
+  const pr=document.getElementById('calc-preview');if(!pr)return;
+  if(p&&c){document.getElementById('calc-price').textContent=fmtEur(p);document.getElementById('calc-comm').textContent=fmtEur(p*c/100);document.getElementById('calc-net').textContent=fmtEur(p-p*c/100);pr.classList.add('show')}
+  else{pr.classList.remove('show')}
+}
 function setStar(n){formStars=n;document.querySelectorAll('.star-btn').forEach(b=>b.classList.toggle('on',+b.dataset.s<=n))}
 function selToggle(g,el){document.querySelectorAll(`.tog[data-${g}]`).forEach(b=>b.classList.remove('sel'));el.classList.add('sel');if(g==='excl')formExcl=el.dataset.excl}
 function togMkt(el){el.classList.toggle('sel');const k=el.dataset.mkt;if(el.classList.contains('sel')){if(!formMkt.includes(k))formMkt.push(k)}else{formMkt=formMkt.filter(m=>m!==k)}}
+
 function saveAgency(){
   const name=document.getElementById('f-name')?.value.trim();
   if(!name){showToast('Escribe el nombre de la inmobiliaria');return;}
-  const agency={id:Date.now().toString(),name,date:document.getElementById('f-date')?.value||new Date().toISOString().split('T')[0],agent:document.getElementById('f-agent')?.value.trim()||'',price:parseFloat(document.getElementById('f-price')?.value)||null,priceMin:null,priceMax:null,commission:parseFloat(document.getElementById('f-commission')?.value)||null,commissionNote:'',exclusivity:formExcl,exclusivityNote:'',time:document.getElementById('f-time')?.value.trim()||'',similar:null,marketing:[...formMkt],certEnergetico:'',cedula:'',parking:'',comunidad:'',stars:formStars,opinion:[],opinionNotes:'',visitas:'',nextStep:'',sensacion:document.getElementById('f-notes')?.value.trim()||'',notes:''};
-  DB.agencies.push(agency);save();renderLista();renderCompare();showPage('lista');showToast(`${name} añadida ✓`);
+  const agency={
+    id:Date.now().toString(),name,
+    date:document.getElementById('f-date')?.value||new Date().toISOString().split('T')[0],
+    agent:document.getElementById('f-agent')?.value.trim()||'',
+    price:parseFloat(document.getElementById('f-price')?.value)||null,
+    priceMin:null,priceMax:null,
+    commission:parseFloat(document.getElementById('f-commission')?.value)||null,
+    commissionNote:'',exclusivity:formExcl,exclusivityNote:'',
+    time:document.getElementById('f-time')?.value.trim()||'',similar:null,
+    marketing:[...formMkt],certEnergetico:'',cedula:'',parking:'',comunidad:'',
+    stars:formStars,opinion:[],opinionNotes:'',visitas:'',nextStep:'',
+    sensacion:document.getElementById('f-notes')?.value.trim()||'',notes:'',
+  };
+  DB.agencies.push(agency);save();renderLista();renderCompare();
+  showPage('lista');showToast(`${name} añadida ✓`);
 }
+
+/* ══ DELETE ══ */
 function confirmDelete(id,name){deleteId=id;document.getElementById('del-msg').textContent=`¿Eliminar la ficha de "${name}"? No se puede deshacer.`;openM('m-del')}
 function doDelete(){DB.agencies=DB.agencies.filter(a=>a.id!==deleteId);save();closeM('m-del');showPage('lista');renderLista();renderCompare();showToast('Ficha eliminada')}
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));const p=document.getElementById('page-'+id);if(p)p.classList.add('on');const n=document.getElementById('nb-'+id);if(n)n.classList.add('on');if(id==='lista')renderLista();if(id==='comparar')renderCompare();}
+
+/* ══ NAV ══ */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  const p=document.getElementById('page-'+id);if(p)p.classList.add('on');
+  const n=document.getElementById('nb-'+id);if(n)n.classList.add('on');
+  if(id==='lista')renderLista();
+  if(id==='comparar')renderCompare();
+}
+
+/* ══ MODAL / TOAST ══ */
 function openM(id){const m=document.getElementById(id);m.classList.add('open');const c=e=>{if(e.target===m){closeM(id);m.removeEventListener('click',c)}};m.addEventListener('click',c)}
 function closeM(id){document.getElementById(id).classList.remove('open')}
 let tt;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2500)}
-function init(){load();renderLista();renderCompare();resetForm();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw-inmo.js').catch(()=>{});}
+
+/* ══ INIT ══ */
+function init(){
+  load();renderLista();renderCompare();resetForm();
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw-inmo.js').catch(()=>{});
+}
 init();
 </script>
 </body>
