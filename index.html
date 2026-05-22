@@ -353,7 +353,7 @@ textarea.f-inp{resize:none;min-height:70px;line-height:1.65}
 </div>
 
 <script>
-const SCRIPT_URL='https://script.google.com/macros/s/AKfycbw2zwRGPRPeaDIQnO3dwwQDpk-QLXG0Y_bnjzSNTKp9bSeWInXE4MLBxs22ZSK1gmQ/exec';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbwR1OJTcLU2opFo1QJsFbod14qXlSgzLunWbRbihqFgrpVeSSSpGcC5PmnFBtkLaTk/exec';
 const MKT=[{k:'Fotos profesionales',e:'📷'},{k:'Fotógrafo profesional',e:'📸'},{k:'Vídeo / tour virtual',e:'🎥'},{k:'Idealista',e:'🏠'},{k:'Fotocasa',e:'🏠'},{k:'Habitaclia',e:'🏠'},{k:'Redes sociales',e:'📱'},{k:'Home staging',e:'🛋️'},{k:'Plano del piso',e:'📐'},{k:'Todas las plataformas',e:'🌐'}];
 const OPS=['Buena luz','Buena ventilación','Para entrar a vivir','Baño reformado','Estancias amplias','Posibilidad baño extra','Cocina amplia','Terraza/balcón','Buen estado general','Potencial de mejora','Zona tranquila','Buenas comunicaciones'];
 const EL={si:'⚠ Exclusiva',negociable:'Negociable',no:'Sin exclusiva'};
@@ -366,6 +366,7 @@ const SEED=[
   {id:'portaoberta',name:'Porta Oberta',agent:'Xavi',date:tod(),stars:4,price:280000,priceMin:270000,priceMax:285000,commission:3,commissionNote:'3% de comisión. Trabaja exclusivamente en exclusividad.',exclusivity:'si',exclusivityNote:'Exige exclusividad. Condición no negociable.',time:'',similar:null,marketing:['Idealista','Fotocasa','Habitaclia'],certEnergetico:'',cedula:'',parking:'',comunidad:'',opinion:[],opinionNotes:'',visitas:'',nextStep:'',sensacion:'Valoración algo más conservadora que Don Piso (~280k). La exclusividad puede ser un inconveniente. Junto con José Ángel, una de las mejores opciones. Pendiente profundizar en marketing.',notes:''},
   {id:'lacasa',name:'La Casa',agent:'Andrés',date:tod(),stars:2,price:260000,priceMin:250000,priceMax:260000,commission:null,commissionNote:'Modelo de margen: fijáis un precio mínimo y ellos venden por encima — el margen es su beneficio. Empezaron desde 250k. Muy lejos de los 300k–315k de José Ángel.',exclusivity:'no',exclusivityNote:'No especificado. Modelo de margen.',time:'',similar:null,marketing:['Idealista','Fotocasa'],certEnergetico:'~400€ incluidos (contrasta con los ~170€ de Don Piso)',cedula:'Incluida en los ~400€',parking:'',comunidad:'',opinion:[],opinionNotes:'Le sorprendió el piso. Valoración inicial 250k. No tomó medidas ni hizo preguntas técnicas.',visitas:'',nextStep:'',sensacion:'Valoración baja. Enfoque muy comercial y agresivo. Posible estrategia: precio bajo al vendedor, luego vender más caro y quedarse el margen. Ofrece seguros, reformas, financiación. Don Piso es más transparente.',notes:''},
   {id:'juma',name:'Fincas Juma',agent:'',date:tod(),stars:2,price:247000,priceMin:235000,priceMax:260000,commission:null,commissionNote:'',exclusivity:'si',exclusivityNote:'Piden exclusividad.',time:'Más lento si supera ~2.839 €/m²',similar:null,marketing:['Idealista','Fotocasa','Habitaclia','Redes sociales'],certEnergetico:'',cedula:'',parking:'',comunidad:'',opinion:['Buena luz','Estancias amplias','Para entrar a vivir','Baño reformado'],opinionNotes:'Informe automático: 87 m², 3 hab., 1 baño, reformado, exterior, ascensor, A/C y calefacción.\nComparables: ~199k–275k. Umbral: ~2.839 €/m².\n• Venta rápida: 235.000 €\n• Precio óptimo: 247.000 €\n• Fuera de mercado: 260.000 €',visitas:'',nextStep:'',sensacion:'Informe automático y conservador. No refleja luz, amplitud ni estado real del piso. Útil como referencia prudente.',notes:''},
+  {id:'tecnocasa',name:'Tecnocasa',agent:'Jeremy',date:tod(),stars:4,price:null,priceMin:null,priceMax:null,commission:null,commissionNote:'Pendiente de recibir valoración e informe. Comentamos ~300.000 € y la reacción fue positiva, parece que lo ven razonable.',exclusivity:'si',exclusivityNote:'Trabajan con exclusividad de 90 días. Dicen que normalmente venden antes de ese plazo.',time:'Antes de 90 días (según ellos)',similar:null,marketing:['Idealista','Fotocasa','Redes sociales'],certEnergetico:'',cedula:'',parking:'',comunidad:'',opinion:['Buena luz','Para entrar a vivir','Estancias amplias','Buen estado general'],opinionNotes:'Han tomado medidas de todo el piso. Conocen muy bien la zona — han vendido un piso enfrente (nº12) y valorado el de al lado (nº15).\n\nPreguntan por los muebles — les dijimos que en principio se quedaría prácticamente todo.\n\nVen el piso con muchas posibilidades de venta rápida y dicen tener cartera de clientes buscando pisos como este.\n\nPendientes de recibir su valoración/informe del piso (similar al de Fincas Juma).',visitas:'',nextStep:'Recibir la valoración/informe. Luego ir a su oficina para comentarlo con calma. Posible reunión la semana que viene con Soraya.',sensacion:'Muy buena sensación. Vinieron dos chicos muy correctos y profesionales. Dan imagen de experiencia y estructura fuerte. Tecnocasa tiene mucha red y capacidad comercial.\n\nNo se han mojado aún con el precio pero la reacción a los ~300k fue positiva. Pendientes de valoración oficial.',notes:''},
 ];
 function tod(){return new Date().toISOString().split('T')[0]}
 const EUR=n=>n?new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n):'–';
@@ -373,63 +374,111 @@ const fDt=iso=>iso?new Date(iso+'T12:00').toLocaleDateString('es-ES',{day:'numer
 const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const stH=(n)=>`<span class="star-on">${'★'.repeat(n||0)}</span><span class="star-off">${'☆'.repeat(5-(n||0))}</span>`;
 function setSS(s,l){document.getElementById('sdot').className='sync-dot '+s;document.getElementById('slbl').textContent=l}
-// JSONP para evitar CORS
-function jsonpFetch(url){
-  return new Promise((resolve,reject)=>{
-    const cb='cb_'+Date.now();
-    const script=document.createElement('script');
-    const timer=setTimeout(()=>{
-      delete window[cb];document.head.removeChild(script);
-      reject(new Error('timeout'));
-    },10000);
-    window[cb]=function(data){
-      clearTimeout(timer);delete window[cb];
-      try{document.head.removeChild(script)}catch(e){}
+// ── SYNC via JSONP (evita CORS) ──
+function jsonpFetch(url, timeoutMs){
+  timeoutMs = timeoutMs || 12000;
+  return new Promise(function(resolve, reject){
+    var cbName = 'pe_cb_' + Date.now() + '_' + Math.floor(Math.random()*9999);
+    var script = document.createElement('script');
+    var done = false;
+    var timer = setTimeout(function(){
+      if(done) return; done = true;
+      delete window[cbName];
+      if(script.parentNode) script.parentNode.removeChild(script);
+      reject(new Error('JSONP timeout'));
+    }, timeoutMs);
+    window[cbName] = function(data){
+      if(done) return; done = true;
+      clearTimeout(timer);
+      delete window[cbName];
+      if(script.parentNode) script.parentNode.removeChild(script);
       resolve(data);
     };
-    script.src=url+(url.includes('?')?'&':'?')+'callback='+cb+'&t='+Date.now();
-    script.onerror=()=>{clearTimeout(timer);delete window[cb];reject(new Error('script error'))};
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    script.src = url + sep + 'callback=' + cbName + '&t=' + Date.now();
+    script.onerror = function(){
+      if(done) return; done = true;
+      clearTimeout(timer);
+      delete window[cbName];
+      reject(new Error('JSONP script error'));
+    };
     document.head.appendChild(script);
   });
 }
 
+function hideLoading(){
+  var el = document.getElementById('loading');
+  el.classList.add('out');
+  setTimeout(function(){ el.style.display='none'; }, 500);
+}
+
 async function loadData(){
   setSS('saving','Cargando…');
+  var loaded = false;
   try{
-    const p=await jsonpFetch(SCRIPT_URL);
-    if(p&&p.agencies&&p.agencies.length>0){DB=p}
-    else{DB.agencies=SEED.map(a=>({...a}));await saveData()}
-    localStorage.setItem('pe_bk',JSON.stringify(DB));
+    var p = await jsonpFetch(SCRIPT_URL, 12000);
+    if(p && p.error){
+      throw new Error('Script error: ' + p.error);
+    }
+    if(p && p.agencies && p.agencies.length > 0){
+      DB = p;
+      loaded = true;
+    } else {
+      // Hoja vacía — sembrar con datos iniciales
+      DB.agencies = SEED.map(function(a){ return Object.assign({}, a); });
+      await saveData();
+      loaded = true;
+    }
+    localStorage.setItem('pe_bk', JSON.stringify(DB));
     setSS('ok','Sincronizado');
-  }catch(e){
+  } catch(err){
     setSS('error','Sin conexión');
-    const lc=localStorage.getItem('pe_bk');
-    DB=lc?JSON.parse(lc):{agencies:SEED.map(a=>({...a}))};
-    toast('Datos locales — sin conexión a Sheets');
+    var lc = localStorage.getItem('pe_bk');
+    if(lc){
+      try{ DB = JSON.parse(lc); loaded = true; }catch(e){}
+    }
+    if(!loaded){
+      DB.agencies = SEED.map(function(a){ return Object.assign({}, a); });
+    }
+    toast('Sheets no disponible — usando datos locales');
   }
-  document.getElementById('loading').classList.add('out');
-  setTimeout(()=>document.getElementById('loading').style.display='none',500);
+  hideLoading();
 }
 
 async function saveData(){
-  localStorage.setItem('pe_bk',JSON.stringify(DB));
+  // Siempre guardar local primero
+  localStorage.setItem('pe_bk', JSON.stringify(DB));
   setSS('saving','Guardando…');
   try{
-    // POST via fetch con no-cors (no podemos leer respuesta pero sí escribir)
-    await fetch(SCRIPT_URL,{
-      method:'POST',
-      mode:'no-cors',
-      body:JSON.stringify(DB),
-      headers:{'Content-Type':'text/plain'}
+    // POST con no-cors: escribe aunque no podamos leer respuesta
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(DB),
+      headers: { 'Content-Type': 'text/plain' }
     });
-    setSS('ok','Guardado ✓');
-  }catch(e){
+    // Verificar que se guardó leyendo de vuelta con JSONP
+    setTimeout(async function(){
+      try{
+        var check = await jsonpFetch(SCRIPT_URL, 8000);
+        if(check && check.agencies){
+          setSS('ok','Guardado ✓');
+        }
+      }catch(e){ setSS('ok','Guardado localmente'); }
+    }, 1500);
+  } catch(err){
     setSS('error','Error al guardar');
-    toast('No se pudo guardar en la nube');
+    toast('No se pudo guardar en Sheets — guardado local');
   }
 }
 
-async function syncNow(){toast('Sincronizando…');await loadData();renderDB();toast('Sincronizado ✓')}
+async function syncNow(){
+  setSS('saving','Sincronizando…');
+  toast('Sincronizando con Google Sheets…');
+  await loadData();
+  renderDB();
+  toast('Sincronización completada ✓');
+}
 function renderSBags(){
   document.getElementById('nav-ags').innerHTML=DB.agencies.map((a,i)=>`
     <div class="nav-ag ${curId===a.id&&document.getElementById('page-detail').classList.contains('active')?'active':''}" onclick="openDet('${a.id}')">
